@@ -1,0 +1,30 @@
+.footer
+  .image-bottom
+    .text
+      だれでもかんたん、人生を変えるフリマアプリ
+    .title
+      今すぐ無料ダウンロード！
+    .badges
+      = link_to image_tag(src='apple-store-badge.png', size: "170x55"), root_path
+      = link_to image_tag(src='google-play-badge.png', size: "200x80"), root_path
+  .footer__top
+    .footer__top__left
+      = link_to "FURIMAについて", root_path, class: "title"
+      = link_to "会社概要(運営会社)", root_path, class: "link"
+      = link_to "プライバシーポリシー", root_path, class: "link"
+      = link_to "FURIMA利用規約", root_path, class: "link"
+      = link_to "ポイントに関する特約", root_path, class: "link"
+    .footer__top__center
+      = link_to "FURIMAを見る", root_path, class: "title"
+      = link_to "カテゴリー一覧", root_path, class: "link"
+      = link_to "ブランド一覧", root_path, class: "link"
+    .footer__top__right
+      = link_to "ヘルプ&ガイド", root_path, class: "title"
+      = link_to "FURIMAガイド", root_path, class: "link"
+      = link_to "FURIMAロゴ利用ガイドライン", root_path, class: "link"
+      = link_to "お知らせ", root_path, class: "link"
+  .footer__bottom
+    .logo
+      = link_to image_tag(src="logo-white.png", size: "180x50"), root_path
+    .copylight
+      © FURIMA
