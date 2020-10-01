@@ -74,7 +74,7 @@ body {
           }
         }
         &__form {
-          &__field, .select, .select-category{
+          &__field, #select, .select-category{
             width: 600px;
             height: 50px;
             padding-left: 18px;

@@ -45,7 +45,7 @@
             .detail__category__title__right
               必須
           .detail__category__form
-            = f.collection_select :category, Category.where(ancestry: nil), :id, :name, {prompt: "選択してください", selected: @item.category_id}, required: true, class: "select select-category"
+            = f.collection_select :select, Category.where(ancestry: nil), :id, :name, {prompt: "選択してください"}, required: true, class: "select-category"
         .detail__brand
           .detail__brand__title
             .detail__brand__title__left
