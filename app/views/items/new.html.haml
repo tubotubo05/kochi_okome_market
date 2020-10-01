@@ -45,7 +45,7 @@
             .detail__category__title__right
               必須
           .detail__category__form
-            = f.select :select_category, [["選択してください", 0]], {}, {class: 'detail__category__form__field'}
+            = f.collection_select :select, Category.where(ancestry: nil), :id, :name, {prompt: "選択してください"}, required: true, class: "select-category"
         .detail__brand
           .detail__brand__title
             .detail__brand__title__left
@@ -61,7 +61,7 @@
             .detail__condition__title__right
               必須
           .detail__condition__form
-            = f.select :select_condition, [["選択してください", 0]], {}, {class: 'detail__condition__form__field'}
+            = f.collection_select :select, Condition.all, :id, :condition
 
       .shipping
         .shipping__pay
@@ -71,7 +71,7 @@
             .shipping__pay__title__right
               必須
           .shipping__pay__form
-            = f.select :select_pay, [["選択してください", 0]], {}, {class: 'shipping__pay__form__field'}
+            = f.collection_select :select, Shipping.all, :id, :shipping
         .shipping__prefecture
           .shipping__prefecture__title
             .shipping__prefecture__title__left
@@ -79,7 +79,7 @@
             .shipping__prefecture__title__right
               必須
           .shipping__prefecture__form
-            = f.select :select_prefecture, [["選択してください", 0]], {}, {class: 'shipping__prefecture__form__field'}
+            = f.collection_select :select, Prefecture.all, :id, :name
         .shipping__day
           .shipping__day__title
             .shipping__day__title__left
@@ -87,7 +87,7 @@
             .shipping__day__title__right
               必須
           .shipping__day__form
-            = f.select :select_day, [["選択してください", 0]], {}, {class: 'shipping__day__form__field'}
+            = f.collection_select :select, ShippingDay.all, :id, :shipping_day
 
       .price
         .price__title
