@@ -1,0 +1,13 @@
+.AccountPage
+  .AccountPage__title
+    %h2 Create Account
+    %h5 新規アカウントの作成
+    = render "devise/shared/links"
+  .AccountPage__form
+    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+      = devise_error_messages!
+      .FormField
+        .FormField__label--normal
+          = f.label :first_name
+        .FormField__input--normal
+          = f.text_field :first_name

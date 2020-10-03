@@ -1,4 +1,5 @@
 class Destination < ApplicationRecord
   belongs_to :user
-  belongs_to_active_hash :prefecture
+
+  validates :first_name, :last_name, :kana_first_name, :postal_code, :prefecture_id, :city, :address, :additional_information, :phone_number :ture
 end
