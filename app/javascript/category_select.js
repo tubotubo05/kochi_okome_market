@@ -1,4 +1,5 @@
 document.addEventListener('turbolinks:load', function () {
+
   if (!$('.select-category')[0]) return false;
 
   function buildCategoryForm(categories) {
@@ -14,8 +15,8 @@ document.addEventListener('turbolinks:load', function () {
                  `;
     });
     const html = `
-                  <br class="${relation}"> 
-                  <select required="required" class="select-category ${relation}" id="parent-category" name="item[category_id]">
+                  <br class="${relation}">
+                  <select required="required" class="select-category ${relation}" id="parent-category" name="item[category_${relation}]">
                     <option value="${relation}">選択してください</option>
                     ${options}
                   </select>
@@ -44,20 +45,20 @@ document.addEventListener('turbolinks:load', function () {
   $(".detail__category__form").on("change", ".select-category", function () {
     const category_id = $(this).val();
     $.ajax({
-      url: '/api/categories', 
+      url: '/api/categories',
       type: "GET",
       data: {
         category_id: category_id
       },
       dataType: 'json',
     }).done(function (categories) {
-      console.log("success")
-      console.log(categories);
+      //console.log("success")
+      //console.log(categories);
       if(categories.array.length != 0){
         existForm(categories.array);
         const html = buildCategoryForm(categories.array);
         $(".select-category:last").after(html);
-      } 
+      }
       selectNoValue(categories)
     })
     .fail(function () {
@@ -66,4 +67,3 @@ document.addEventListener('turbolinks:load', function () {
   });
 
 });
-
