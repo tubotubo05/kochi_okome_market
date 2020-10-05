@@ -1,0 +1,13 @@
+.AccountPage
+  .AccountPage__title
+    %h2 Create Account
+    %h5 本人確認情報
+    = render "devise/shared/links"
+  .AccountPage__form
+    = form_for @profiles do |f|
+      = render "devise/shared/error_messages", resource: @profile
+      .FormField
+        .FormField__label--normal
+          = f.label :first_name
+        .FormField__input--normal
+          = f.text_field :first_name

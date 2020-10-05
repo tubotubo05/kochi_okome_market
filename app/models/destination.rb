@@ -1,5 +1,13 @@
 class Destination < ApplicationRecord
   belongs_to :user
 
-  validates :first_name, :last_name, :kana_first_name, :postal_code, :prefecture_id, :city, :address, :additional_information, :phone_number :ture
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :kana_first_name, presence: true
+  validates :kana_last_name, presence: true
+  validates :postal_code, presence: true
+  validates :prefecture_id, presence: true
+  validates :city, presence: true
+  validates :address, presence: true
+
 end

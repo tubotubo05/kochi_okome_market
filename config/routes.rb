@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
-  devise_scope :user do
-    get 'destination', to: 'users/registrations#new_destinations'
-    post 'destination', to: 'users/registrations#create_destinations'
+  devise_scope :users do
+    get 'profiles', to: 'users/registrations#new_profiles'
+    post 'profiles', to: 'users/registrations#create_profiles'
   end
 
   get 'users/show'
@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :categories, only: [:index, :new], defaults: { format: 'json' }
   end
+
 
 end
 

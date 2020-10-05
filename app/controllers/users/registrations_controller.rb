@@ -4,6 +4,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
+  def index
+  end
   # GET /resource/sign_up
   def new
     @user = User.new
@@ -19,9 +21,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
     session["devise.regist_data"] = {user: @user.attributes}
     session["devise.regist_data"][:user]["password"] = params[:user][:password]
-    @destinations = @user.destinations.build
-    render :new_destinations
+    @profile = @users.build_profiles
+    render :new_profiles
   end
+
+  # def create_profiles
+  #   @user = User.new(session["devise.regist_data"]["users"])
+  #   @profile = Profile.new(profiles_params)
+  #   unless @profile.valid?
+  #     flash.now[:alert] = @profile.errors.full_messages
+  #     render :new_profile and return
+  #   end
+  #   @user.build_profiles(@profile.attributes)
+  #   @user.save
+  #   session["devise.regist_data"]["users"].clear
+  #   sign_in(:user, @user)
+  # end
 
   # GET /resource/edit
   # def edit
@@ -49,6 +64,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   protected
 
+  def profiles_params
+    params.require(:address).permit(:first_name, :last_name, :kana_first_name, :kana_last_name, :birthday,)
+  end
+
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
   #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
@@ -68,4 +87,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+
 end
