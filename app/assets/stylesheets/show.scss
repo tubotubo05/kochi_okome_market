@@ -1,0 +1,143 @@
+.item-show{
+  width: 100vw;
+  height: 100%;
+  background-color:#FFF0F5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .item-box{
+  width: 700px;
+  height: 100%;
+  background-color:white;
+  margin-top: 50px;
+  padding: 24px 40px ;
+  text-align: center;
+
+
+    h1{
+      color: black;
+      font-size: 24px;
+      font-weight: bold;
+      height: 40px;
+      width: 620px;
+      margin-bottom: 10px;
+    }
+    .item-content{
+      .image{
+        height: 360px;
+        width: 300px;
+      }
+      ul{
+        display: flex;
+        justify-content: center;
+        height: 95px;
+        li{
+          .image-tag{
+            height:95px ;
+            width: 140px; 
+          }
+        }
+      }
+    }
+    .box-price{
+      width: 620px;
+      margin: 24px 0;
+      .item-price{
+        font-size: 46px;
+        font-weight: bold;
+      }
+      &__tax{
+        font-size: 16px;
+      }
+    }
+    .item-Detail{
+      margin-bottom: 20px;
+    }
+    .item-table{
+      height: 500px;
+      width: 620px;
+      tr{
+        .title{
+          width: 100px;
+          background-color: #FAFAFA;
+          border: 1px solid #DDDDDD;
+        }
+        .date{
+          background-color: white;
+          width: 260px;
+          border: 1px solid #DDDDDD;
+        }
+      }
+    }
+    .option-box{
+      display: flex;
+      justify-content: space-between;
+      margin-top: 40px;
+      .like-btn{
+        height: 38px;
+        width: 134px;
+        color: #3CCACE;
+        border:1px solid #FFB340 ;
+        border-radius: 40px;
+        padding: 6px 10px;
+      }
+      .option-btn{
+        border: 1px solid #333333 ;
+        border-radius: 4px;
+        padding: 6px 10px;
+        font-size: 14px;
+
+        a{
+          color: #333333;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+  .comment-box{
+    height: 300px;
+    width: 700px;
+    background-color: white;
+    margin: 10px 0 0;
+    .comment-new{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+      textarea{
+        display: block;
+        height: 100px;
+        width: 650px;
+      }
+      .notice{
+        padding:8px ;
+        margin: 10px 0;
+        width: 640px;
+      }
+      button{
+        display: block;
+        height: 50px;
+        width: 390px;
+        background-color: #3CCACE;
+        border-radius: 100px;
+        border: 1px solid #3CCACE;
+        color: #ffffff;
+        font-size: 18px;
+        margin-top: 20px;
+      }
+    }
+  }
+  .links{
+    width: 700px;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0 50px;
+    .link{
+      font-size: 16px;
+      color: #3CCACE;
+    }
+  }
+}
