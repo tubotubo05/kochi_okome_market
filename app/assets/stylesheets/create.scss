@@ -1,6 +1,8 @@
 .put-up {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   &__message {
     width: 400px;
     font-size: 30px;
