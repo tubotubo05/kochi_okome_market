@@ -5,3 +5,16 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "show";
+
+.notifications {
+  color: white;
+  text-align: center;
+
+  .notice {
+    background-color: #3CCACE;
+  }
+
+  .alert {
+    background-color: red;
+  }
+}
