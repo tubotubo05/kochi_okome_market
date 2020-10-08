@@ -1,13 +1,74 @@
-.AccountPage
-  .AccountPage__title
-    %h2 Create Account
-    %h5 新規アカウントの作成
-    = render "devise/shared/links"
-  .AccountPage__form
-    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-      = devise_error_messages!
-      .FormField
-        .FormField__label--normal
-          = f.label :first_name
-        .FormField__input--normal
-          = f.text_field :first_name
+.form
+  .new-header
+    .new-header__title
+      = link_to image_tag(src="logo.png", size: "140x40"), root_path
+  .main
+    .main__box
+      .main__title
+        届け先情報
+      = form_for @profile do |f| 
+        = render "devise/shared/error_messages", resource: @profile
+        .box
+          .field
+            .field__label
+              = f.label :first_name
+              %br/
+            .field__box
+              = f.text_field :first_name
+          .field
+            .field__label
+              = f.label :last_name
+              %br/
+            .field__box
+              = f.text_field :last_name
+          .field
+            .field__label
+              = f.label :kana_first_name
+              %br/
+            .field__box
+              = f.text_field :kana_first_name
+          .field
+            .field__label
+              = f.label :kana_last_name
+              %br/
+            .field__box
+              = f.text_field :kana_last_name
+          .field
+            .field__label
+              = f.label :postal_code
+              %br/
+            .field__box
+              = f.date_field :birthday
+          .field
+            .field__label
+              = f.label :prefecture_id
+              %br/
+            .field__box
+              = f.text_field :prefecture_id
+          .field
+            .field__label
+              = f.label :city
+              %br/
+            .field__box
+              = f.text_field :city
+          .field
+            .field__label
+              = f.label :address
+              %br/
+            .field__box
+              = f.text_field :address
+          .field
+            .field__label
+              = f.label :additional_information
+              %br/
+            .field__box
+              = f.text_field :additional_information
+          .field
+            .field__label
+              = f.label :phone_number
+              %br/
+            .field__box
+              = f.text_field :phone_number
+          .actions
+            = f.submit "Next", class: 'btn'
+        = render "devise/shared/links"

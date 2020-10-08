@@ -1,122 +1,73 @@
-.AccountPage {
-  width: 980px;
-  margin: 60px auto;
-  padding: 60px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  display: flex;
-  justify-content: space-between;
-}
-.AccountPage__title {
-  width: 50%;
-  font-size: 14px;
-  font-weight: 200;
+.form {
+  display: block;
+  padding: 0 0 220px;
+  background: whitesmoke;
 
-  h2 {
-    margin-bottom: 10px;
-    letter-spacing: 3px;
-    font-size: 40px;
-    color: #f05050;
-    &:after {
-      content: "";
-      display: block;
-      width: 60px;
-      margin-top: 5px;
-      border-bottom: 1px solid #38aef0;
-    }
-  }
-
-  .Button {
-    margin-top: 40px;
-    color: #fff;
-    background-color: #ccc;
-  }
-}
-
-.AccountPage__form {
-  width: 50%;
-}
-
-.FormField {
-  margin-bottom: 10px;
-  &__label--normal {
-    padding: 10px 0;
-    letter-spacing: 1px;
-    font-size: 14px;
-    font-weight: 200;
-    i {
-      font-size: 11px;
-    }
-    .field_with_errors {
+  .new-header {
+    height: 128px;
+    text-align: center;
+    &__title {
+      margin-top: 40px 0 0;
       display: inline-block;
-      color: #d65f4c;
-      font-weight: 400;
     }
-  }
-  &__input--normal {
-    input {
-      box-sizing: border-box;
-      width: 100%;
-      padding: 10px;
-      letter-spacing: 1px;
+    &__progress {
+      padding: 40px 0 0 44px;
     }
-    .field_with_errors {
-      position: relative;
 
-      &:after {
-        content: "";
-        display: block;
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        width: 5px;
-        background-color: #d65f4c;
+  }
+
+  .main {
+    display: block;
+    &__box {
+      width: 700px;
+      margin: 0 auto;
+      background: #ffffff;
+    }
+    &__title {
+      font-size: 22px;
+      font-weight: bold;
+      text-align: center;
+      border-bottom: 1px solid whitesmoke;
+      padding: 32px;
+    }
+    .new_user {
+      padding: 40px 40px 64px;
+    }
+
+    .box {
+      max-width: 343px;
+      margin: 0 auto;
+      .field {
+        margin-top: 32px;
+        &__label {
+          font-weight: 600;
+        }
+        &__box {
+          input {
+          width: 100%;
+          height: 48px;
+          padding: 10px 16px 8px;
+          margin: 8px 0 0;
+          border: 1px solid #cccccc;
+          background: #ffffff;
+          line-height: 1.5;
+          font-size: 16px;
+          }
+          
+        }
       }
     }
-  }
-}
-
-.Button {
-  display: inline-block;
-  height: 50px;
-  padding: 0 30px;
-  line-height: 50px;
-  letter-spacing: 1px;
-  text-align: center;
-  border: none;
-  border-radius: 2px;
-  text-decoration: none;
-}
-
-.UserButton {
-  margin-top: 20px;
-  color: #fff;
-  background-color: #38aef0;
-}
-
-#error_explanation {
-  margin: 20px 0;
-  padding: 20px 30px;
-  border: 1px solid #ddd;
-  border-radius: 2px;
-
-  h2 {
-    margin-bottom: 10px;
-    color: #d65f4c;
+  .btn {
+    margin: 24px 0 0;
+    display: block;
+    width: 100%;
+    line-height: 48px;
     font-size: 14px;
+    text-align: center;
+    background: #3CCACE;
+    border: 1px solid #3CCACE;
+    color: #ffffff;
   }
-
-  ul {
-    margin: 0;
-    padding-left: 17px;
-    list-style: square;
-  }
-
-  li {
-    margin: 0;
-    padding: 0;
-    font-size: 13px;
+    
   }
 }

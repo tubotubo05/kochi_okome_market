@@ -1,33 +1,55 @@
-.AccountPage
-  .AccountPage__title
-    %h2 Create Account
-    %h5 新規アカウントの作成
-    = render "devise/shared/links"
-  .AccountPage__form
-    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-      = devise_error_messages!
-      .FormField
-        .FormField__label--normal
-          = f.label :nickname
-        .FormField__input--normal
-          = f.text_field :nickname, autofocus: true
-      .FormField
-        .FormField__label--normal
-          = f.label :email
-        .FormField__input--normal
-          = f.email_field :email
-      .FormField
-        .FormField__label--normal
-          = f.label :password
-          %i (英数字7文字以上)
-        .FormField__input--normal
-          = f.password_field :password, autocomplete: "off"
-      .FormField
-        .FormField__label--normal
-          = f.label :password_confirmation
-        .FormField__input--normal
-          = f.password_field :password_confirmation, autocomplete: "off"
-      .actions
-        =  f.submit "次へ"
-
-
+.form
+  .new-header
+    .new-header__title
+      = link_to image_tag(src="logo.png", size: "140x40"), root_path
+    .new-header__progress
+      %ol
+        %li.new-header__progress__text--active{ id: "first" }
+          会員情報
+          .new-header__progress__round--red
+        %li.new-header__progress__text
+          お届け先住所入力
+          .new-header__progress__round     
+        %li.new-header__progress__text
+          支払い方法
+          .new-header__progress__round    
+        %li.new-header__progress__text{ id: "end" }
+          完了
+          .new-header__progress__round
+  .main
+    .main__box
+      .main__title
+        会員情報入力
+      = form_for(@user, url: user_registration_path) do |f|
+        = render "devise/shared/error_messages", resource: @user
+        .box
+          .field
+            .field__label
+              = f.label :ニックネーム
+              %br/
+            .field__box
+              = f.text_field :nickname
+          .field
+            .field__label
+              = f.label :メールアドレス
+              %br/
+            .field__box
+              = f.email_field :email, autofocus: true, autocomplete: "email"
+          .field
+            .field__label
+              = f.label :パスワード
+              - if @minimum_password_length
+                %em
+                  (#{@minimum_password_length} characters minimum)
+              %br/
+            .field__box
+              = f.password_field :password, autocomplete: "new-password"
+          .field
+            .field__label
+              = f.label :パスワード確認用
+              %br/
+            .field__box
+              = f.password_field :password_confirmation, autocomplete: "new-password"
+            .action
+            = f.submit "Next", class: 'btn'
+        = render "devise/shared/links"

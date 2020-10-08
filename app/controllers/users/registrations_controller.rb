@@ -13,30 +13,30 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
 
   # POST /resource
-  def create
-    @user = User.new(sign_up_params)
-    unless @user.valid?
-      flash.now[:alert] = @user.errors.full_messages
-      render :new and return
-    end
-    session["devise.regist_data"] = {user: @user.attributes}
-    session["devise.regist_data"][:user]["password"] = params[:user][:password]
-    @profile = @users.build_profiles
-    render :new_profiles
-  end
-
-  # def create_profiles
-  #   @user = User.new(session["devise.regist_data"]["users"])
-  #   @profile = Profile.new(profiles_params)
-  #   unless @profile.valid?
-  #     flash.now[:alert] = @profile.errors.full_messages
-  #     render :new_profile and return
+  # def create
+  #   @user = User.new(sign_up_params)
+  #   unless @user.valid?
+  #     flash.now[:alert] = @user.errors.full_messages
+  #     render :new and return
   #   end
-  #   @user.build_profiles(@profile.attributes)
-  #   @user.save
-  #   session["devise.regist_data"]["users"].clear
-  #   sign_in(:user, @user)
+  #   session["devise.regist_data"] = {user: @user.attributes}
+  #   session["devise.regist_data"][:user]["password"] = params[:user][:password]
+  #   @profile = @user.build_profile
+  #   render :new_profile
   # end
+
+  def create_profile
+    @user = User.new(session["devise.regist_data"]["user"])
+    @profile = Profile.new(profile_params)
+    unless @profile.valid?
+      flash.now[:alert] = @profile.errors.full_messages
+      render :new_profile and return
+    end
+    @user.build_profile(@profile.attributes)
+    @user.save
+    session["devise.regist_data"]["user"].clear
+    sign_in(:user, @user)
+  end
 
   # GET /resource/edit
   # def edit
@@ -65,7 +65,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def profiles_params
-    params.require(:address).permit(:first_name, :last_name, :kana_first_name, :kana_last_name, :birthday,)
+    params.require(:profile).permit(:first_name, :last_name, :kana_first_name, :kana_last_name, :birthday,)
   end
 
   # If you have extra params to permit, append them to the sanitizer.
