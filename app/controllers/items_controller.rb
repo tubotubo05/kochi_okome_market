@@ -36,7 +36,6 @@ class ItemsController < ApplicationController
       @item.item_images.build
       render new_item_path
     end
-    #binding.pry
   end
 
   def update

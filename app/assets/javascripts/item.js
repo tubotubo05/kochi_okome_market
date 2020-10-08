@@ -28,8 +28,6 @@ $(document).on('turbolinks:load', ()=> {
     const file = e.target.files[0];
     const blobUrl = window.URL.createObjectURL(file);
 
-    //$('.file').eq(0).remove();
-
     if (img = $(`img[data-index="${targetIndex}"]`)[0]) {
       img.setAttribute('src', blobUrl);
     } else {
