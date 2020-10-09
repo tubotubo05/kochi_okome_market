@@ -6,10 +6,16 @@
   &__message {
     width: 400px;
     font-size: 30px;
-    color: white;
-    background-color: #3CCACE;
+    color: #3CCACE;
     padding: 30px;
     display: flex;
     justify-content: center;
+  }
+  &__return {
+    .link {
+      font-size: 20px;
+      color: #3CCACE;
+      text-decoration: none;
+    }
   }
 }
