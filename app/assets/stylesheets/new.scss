@@ -1,0 +1,183 @@
+input[type="file"] {
+  width: 100%;
+  height:100%;
+  cursor:pointer;
+  opacity:0;
+}
+
+.page {
+  background-color: rgb(245, 245, 245);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .logo {
+    padding: 30px 0px;
+  }
+  .last {
+    &__area {
+      width: 210px;
+      height: 55px;
+      background-color: black;
+      border-radius: 5px;
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  .main {
+    width: 700px;
+    background-color: white;
+    .top, .detail, .shipping {
+      &__image, &__name, &__description, &__category, &__brand, &__condition, &__pay, &__prefecture, &__day {
+        padding: 30px 50px 0px 50px;
+        &__title {
+          font-size: 20px;
+          font-weight: bold;
+          padding-bottom: 10px;
+          display: flex;
+          &__right {
+            height: 18px;
+            font-size: 12px;
+            color: white;
+            background-color: red;
+            border-radius: 5px;
+            margin: 7px 0px 0px 7px;
+          }
+          .optional {
+            background-color: grey;
+          }
+        }
+        &__text {
+          font-size: 15px;
+          padding-bottom: 10px;
+        }
+        &__upload {
+          height: 170px;
+          width: 600px;
+          display: flex;
+          justify-content: start;
+          align-items: center;
+          .previews {
+            //width: 600px;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            &__field {
+              padding: 0px 5px;
+              display: flex;
+              flex-direction: column;
+              justify-content: start;
+              align-items: center;
+              &__button {
+                width: 80px;
+                text-align: center;
+                font-weight: bold;
+                color: white;
+                background-color: #3CCACE;
+                border-radius: 5px;
+                padding: 5px;
+                margin: 3px 0px;
+              }
+            }
+          }
+          .area{
+            width: 100%;
+            .field {
+              display: flex;
+              justify-content: start;
+              align-items: center;
+              .file {
+                width: 80px;
+                text-align: center;
+                font-weight: bold;
+                color: white;
+                //background-color: #3CCACE;
+                border-radius: 5px;
+                padding: 5px;
+                margin: 0px 15px;
+                position:relative;
+                &__image {
+                  position:absolute;
+                  top:0;
+                  left:0;
+                }
+                .icon {
+                  height: 110px;
+                  width: 110px;
+                  color: #3CCACE;
+                  font-size: 50px;
+                  text-align: center;
+                  background-color: rgb(245, 245, 245);
+                  border-style: dotted;
+                  border-radius: 5px;
+                  padding: 25px;
+                  //cursor: pointer;
+                }
+              }
+            }
+          }
+        }
+        &__form {
+          &__field, .select, .select-category{
+            width: 600px;
+            height: 50px;
+            padding-left: 18px;
+          }
+          .field-area {
+            width: 600px;
+            height: 200px;
+            padding: 18px;
+          }
+          .select-category {
+            margin-bottom: 3px;
+          }
+        }
+      }
+    }
+    .price {
+      padding: 80px 50px 0px 50px;
+      display: flex;
+      justify-content: space-between;
+      &__title {
+        font-size: 20px;
+        font-weight: bold;
+        padding-bottom: 10px;
+        display: flex;
+        &__right {
+          height: 18px;
+          font-size: 12px;
+          color: white;
+          background-color: red;
+          border-radius: 5px;
+          margin: 7px 0px 0px 7px;
+        }
+      }
+      &__form {
+        margin-top: -10px;
+        &__field {
+          width: 300px;
+          height: 50px;
+          padding-left: 18px;
+        }
+      }
+    }
+    .button {
+      padding: 70px 50px 70px 50px;
+      display: flex;
+      justify-content: center;
+      &__put-up {
+        width: 400px;
+        height: 80px;
+        font-size: 30px;
+        color: white;
+        background-color: #3CCACE;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    }
+  }
+
+}

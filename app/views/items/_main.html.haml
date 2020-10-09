@@ -1,4 +1,4 @@
-%a{href: '/', class: "display"}
+%a{href: '/items/new', class: "display"}
   .display__text
     出品する
   .display__link
@@ -88,7 +88,7 @@
       = link_to "新規投稿商品", root_path, class: "link"
     .pickup-category__items
       - 5.times do |num|
-        %a{href: '/', class: "item#{num+1}"}
+        %a{href: '/items/1', class: "item#{num+1}"}
           .image
             = image_tag 'square.png', class: 'image', width: '220px', height: '150px'
           .context
@@ -108,7 +108,7 @@
       = link_to "アーカイバ", root_path, class: "link"
     .pickup-category__items
       - 5.times do |num|
-        %a{href: '/', class: "item#{num+1}"}
+        %a{href: '/items/1', class: "item#{num+1}"}
           .image
             = image_tag 'square.png', class: 'image', width: '220px', height: '150px'
           .context

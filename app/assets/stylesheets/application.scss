@@ -1,6 +1,22 @@
 @import "reset";
 @import "items";
+@import "user";
+@import "new";
+@import "create";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "show";
 @import "confirm";
+
+.notifications {
+  color: white;
+  text-align: center;
+
+  .notice {
+    background-color: #3CCACE;
+  }
+
+  .alert {
+    background-color: red;
+  }
+}
