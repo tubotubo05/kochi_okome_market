@@ -1,8 +1,6 @@
 class ItemsController < ApplicationController
   def index
   end
-<<<<<<< Updated upstream
-=======
 
   def confirm
     
@@ -18,5 +16,4 @@ class ItemsController < ApplicationController
   
   def create
   end
->>>>>>> Stashed changes
 end
