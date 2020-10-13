@@ -1,7 +1,12 @@
 class ItemsController < ApplicationController
-  before_action :set_item, except: [:index, :new, :create]
+  before_action :set_item, except: [:index, :new, :create, :show]
 
   def index
+    @items = Item.includes(:user).order('created_at DESC')
+    @ladies = Item.where(category_id:1..210)
+    @mens = Item.where(category_id: 211..354)
+    @book = Item.where(category_id:629..686)
+    @home_appliances = Item.where(category_id:897..982)
   end
 
 
@@ -10,10 +15,11 @@ class ItemsController < ApplicationController
   end
 
   def show
-    render:confirm
+    @item = Item.find(params[:id])
+    @comment =Comment.new
+    @comments =@item.comments.order(created_at: :desc)
+    @tax = @item.price * 1.1
   end
-
-
 
   def new
     @item = Item.new

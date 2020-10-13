@@ -2,55 +2,67 @@
 
 .item-show
   .item-box
-    %h1 T-シャツ
+    %h1 
+      = @item.name
     .item-content
-      = image_tag 't-shirt.jpeg',class:'image'
-      %ul
-        %li
-          =image_tag 'tshirt1.jpeg',class:'image-tag'
-        %li
-          =image_tag 'tshirt2.jpeg',class:'image-tag'
-        %li
-          =image_tag 'tshirt3.jpeg',class:'image-tag'
+      %ul.slider-for
+        - @item.item_images.each do |img|
+          %li
+            =image_tag  img.image_url.url,class:'image-content'
+            -if @item.buyer_id.present? 
+              .sold
+                .sold__inner
+                  SOLD
+      %ul.slider-nav
+        - @item.item_images.each do |img|
+          %li
+            =image_tag  img.image_url.url,class:'3'
     .box-price
-      %span.item-price ¥2000
+      %span.item-price
+        ¥
+        =@tax.round
       .item-price__tax
         %span （税込）
-        %span 送料込み
     .item-Detail
-      親譲りの無鉄砲で小供の時から損ばかりしている。小学校に居る時分学校の二階から飛び降りて一週間ほど腰を抜かした事がある。なぜそんな無闇をしたと聞く人があるかも知れぬ。別段深い理由でもない。新築の二階から首を出していたら、同級生の一人が冗談に、いくら威張っても、そこから飛び降りる事は出来まい。弱虫やーい。と囃したからである。小使に負ぶさって帰って来た時、おやじが大きな眼をして二階ぐらいから飛び降りて腰
+      = @item.description
     %table.item-table
       %tr
         %td.title 出品者
-        %td.date
+        %td.date 
+          = @item.user.nickname 
       %tr
         %td.title カテゴリー
         %td.date
+          = @item.category.name
       %tr
         %td.title ブランド
         %td.date
+          - if @item.brand.present?
+            = @item.brand.name
       %tr
-        %td.title 商品のサイズ
+        %td.title 商品の状態
         %td.date
+          = @item.condition.condition
       %tr
-        %td.title　商品の状態
+        %td.title 配送料の負担
         %td.date
+          = @item.shipping.shipping
       %tr
-        %td.title　配送料の負担
+        %td.title 配送元地域
         %td.date
+          = @item.prefecture.name
       %tr
-        %td.title　配送方法
+        %td.title 発送日の目安
         %td.date
-      %tr
-        %td.title　配送元地域
-        %td.date
-      %tr
-        %td.title　発送日の目安
-        %td.date
+          = @item.shipping_day.shipping_day
     .buy-box
-      =link_to "/items/confirm",class:"buy-btn" do
-        購入画面に進む
-
+      - if @item.buyer_id.present?
+        .bought 売り切れました
+      - elsif user_signed_in? && current_user.id ==@item.user_id
+        =link_to "商品の編集","#",class:"edit-btn"
+        =link_to "この商品を削除する","#",class:"destroy-btn"
+      -else
+        =link_to "購入画面に進む","#",class:"buy-btn"
     .option-box
       %ul
         %li.like-btn
@@ -62,14 +74,41 @@
             =icon('fa','flag')
             不適切な商品の通報
   .comment-box
-    %form.comment-new
-      %textarea
-      .notice
-        %p  相手のことを考え丁寧なコメントを心がけましょう。
-        不快な言葉遣いなどは利用制限や退会処分となることがあります。
-      %button{type:"submit"}
-        =icon('fa','comment')
-        コメントする
+    - if @comments
+      - @comments.each do |comment|
+        .comment-content
+          -if comment.user_id == @item.user_id
+            .content
+              .profile
+                .image
+                  = icon('far', 'user-circle')
+                .buyer
+                  出品者
+              .member-list
+                .name
+                  = comment.user.nickname
+                .comment
+                  = comment.comment
+          - else
+            .content
+              .profile
+                .image
+                  = icon('far', 'user-circle')
+              .member-list
+                .name
+                  = comment.user.nickname
+                .comment
+                  = comment.comment
+    - if current_user
+      = form_with(model:[@item, @comment], class: "comment-new") do |form|
+        .notice
+          %p 相手のことを考え丁寧なコメントを心がけましょう。
+          不快な言葉遣いなどは利用制限や退会処分となることがあります。
+        = form.text_area :comment, {class: "textarea"}
+        =form.submit 'コメントする',class:"button"
+    - else
+      %strong
+        %p ※※※ コメントの投稿には新規登録/ログインが必要です ※※※
   %ul.links
     %li.link
       %a
@@ -79,4 +118,5 @@
       %a
         次の商品
         =icon('fa','angle-right')
+
 = render 'footer'

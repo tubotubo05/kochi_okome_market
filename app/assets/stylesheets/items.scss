@@ -275,6 +275,7 @@ a:hover {
     &__title {
       font-size: 28px;
       font-weight: bold;
+      margin-bottom: 20px;
     }
     &__link {
       font-size: 26px;
@@ -289,9 +290,31 @@ a:hover {
       display: flex;
       justify-content: center;
       align-items: center;
-      .item1, .item2, .item3, .item4, .item5 {
+      a{
         text-decoration: none;
         color: black;
+        .image{
+          height: 150px;
+          .sold{
+            width: 0;
+            height: 0;
+            border-top: 60px solid #3CCACE ;
+            border-right: 60px solid transparent;
+            border-bottom: 60px solid transparent;
+            border-left: 60px solid #3CCACE ;
+            z-index:100;
+            position: relative;
+            top:-156px;
+            &__inner{
+              transform: rotate(-45deg);
+              font-size: 26px;
+              margin:-35px 0px 0px -65px;
+              color: #fff;
+              letter-spacing: 2px;
+              font-weight: 600;
+            }
+          }
+        }
         .context {
           background-color: white;
           padding: 10px;
