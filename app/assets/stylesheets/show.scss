@@ -17,7 +17,7 @@
 
 
     h1{
-      color: black;
+      color:#222222;
       font-size: 24px;
       font-weight: bold;
       height: 40px;
@@ -25,20 +25,44 @@
       margin-bottom: 10px;
     }
     .item-content{
-      .image{
-        height: 360px;
-        width: 300px;
-      }
-      ul{
-        display: flex;
-        justify-content: center;
-        height: 95px;
-        li{
-          .image-tag{
-            height:95px ;
-            width: 140px;
+      .slider-for{
+        height: 300px;
+        width: 250px;
+        margin-bottom: 50px;
+        margin-left: 30%;
+        .sold{
+          width: 0;
+          height: 0;
+          border-top: 60px solid #3CCACE ;
+          border-right: 60px solid transparent;
+          border-bottom: 60px solid transparent;
+          border-left: 60px solid #3CCACE ;
+          z-index:100;
+          position: relative;
+          top:-300px;
+          &__inner{
+            transform: rotate(-45deg);
+            font-size: 26px;
+            margin:-35px 0px 0px -65px;
+            color: #fff;
+            letter-spacing: 2px;
+            font-weight: 600;
           }
         }
+        img{
+          height: 300px;
+          width: 250px;
+        }
+      }
+      .slider-nav{
+        width: 410px;
+        height: 100px;
+        margin-left: 120px;
+        img{
+          height: 100px;
+          width: 100px;
+        }
+
       }
     }
     .box-price{
@@ -50,10 +74,15 @@
       }
       &__tax{
         font-size: 16px;
+        color: #444444;
       }
     }
     .item-Detail{
-      margin-bottom: 20px;
+      margin: 40px 0;
+      color: #333333;
+      font-size: 18px;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
     }
     .item-table{
       height: 500px;
@@ -63,11 +92,14 @@
           width: 100px;
           background-color: #FAFAFA;
           border: 1px solid #DDDDDD;
+          color: #333333;
         }
         .date{
           background-color: white;
           width: 260px;
           border: 1px solid #DDDDDD;
+          color: #333333;
+          font-size: 19px;
         }
       }
     }
@@ -77,9 +109,39 @@
         text-decoration: none;
         color: #ffffff;
         font-size: 24px;
+        font-weight: 550;
         background-color: #3CCACE;
-        padding: 15px 220px;
+        padding: 15px 226px;
         border-radius: 3px;
+      }
+      .edit-btn{
+        text-decoration: none;
+        color: #ffffff;
+        font-size: 24px;
+        font-weight: 550;
+        background-color: #3CCACE;
+        padding: 15px 250px;
+        border-radius: 3px;
+      }
+      .destroy-btn{
+        display: block;
+        text-decoration: none;
+        color: #ffffff;
+        background-color: #AAAAAA;
+        padding: 9px 190px;
+        font-size: 24px;
+        font-weight: 550;
+        border-radius: 3px;
+        margin-top: 30px;
+      }
+      .bought{
+        height:54px ;
+        width: 620px;
+        background-color: #888888;
+        padding: 10px 0;
+        color: #ffffff;
+        font-size: 24px;
+        font-weight: 550;
       }
     }
     .option-box{
@@ -107,27 +169,59 @@
     }
   }
   .comment-box{
-    height: 300px;
+    height: 100%;
     width: 700px;
     background-color: white;
     margin: 10px 0 0;
+    padding: 20px;
+    .comment-content{
+      .content{
+        display: flex;
+        margin-bottom: 40px;
+        .profile{
+          .image{
+            font-size: 40px;
+            color: #666666;
+          }
+          .buyer{
+            font-size: 12px;
+            color: #333333;
+          }
+        }
+        .member-list{
+          margin-left: 10px;
+          .name{
+            color: #222222;
+          }
+          .comment{
+            padding: 15px 10px;
+            height: 100%;
+            width: 600px;
+            background-color: #EEEEEE;
+            border-radius: 10px;
+            color: #333333;
+          }
+        }
+      }
+    }
     .comment-new{
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       padding: 24px;
-      textarea{
+      .textarea{
         display: block;
         height: 100px;
         width: 650px;
+        padding: 5px;
       }
       .notice{
         padding:8px ;
         margin: 10px 0;
         width: 640px;
       }
-      button{
+      .button{
         display: block;
         height: 50px;
         width: 390px;
@@ -137,6 +231,9 @@
         color: #ffffff;
         font-size: 18px;
         margin-top: 20px;
+        &:hover{
+          background-color: #62d4d7;
+        }
       }
     }
   }
