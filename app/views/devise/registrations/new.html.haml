@@ -26,30 +26,54 @@
           .field
             .field__label
               = f.label :ニックネーム
-              %br/
+              %span.field__label__attention 必須
             .field__box
-              = f.text_field :nickname
+              = f.text_field :nickname, {placeholder:"例) FURIMA太郎",class:'input'}
           .field
             .field__label
               = f.label :メールアドレス
-              %br/
+              %span.field__label__attention 必須
             .field__box
-              = f.email_field :email, autofocus: true, autocomplete: "email"
+              = f.email_field :email, {autofocus: true, autocomplete: "email", placeholder:"PC・携帯どちらでも可",class:'input'}
           .field
             .field__label
               = f.label :パスワード
-              - if @minimum_password_length
-                %em
-                  (#{@minimum_password_length} characters minimum)
-              %br/
+              %span.field__label__attention 必須
             .field__box
-              = f.password_field :password, autocomplete: "new-password"
+              = f.password_field :password, {autocomplete: "new-password", placeholder:"７文字以上の半角英数文字",class:'input'}
           .field
             .field__label
               = f.label :パスワード確認用
-              %br/
+              %span.field__label__attention 必須
             .field__box
               = f.password_field :password_confirmation, autocomplete: "new-password"
-            .action
-            = f.submit "Next", class: 'btn'
-        = render "devise/shared/links"
+          .field
+            .profile-title 
+              本人確認
+            .text 
+              安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
+          = f.fields_for :profile do |p|
+            .field
+              .field__label
+                = p.label :"お名前(全角)"
+                %span.field__label__attention 必須
+              .field__box
+                = p.text_field :first_name, {class: "half", placeholder:"例) 山田"}
+                = p.text_field :last_name, {class: "half", placeholder:"例) 太郎"}
+            .field
+              .field__label
+                = p.label :"お名前(カナ)"
+                %span.field__label__attention 必須
+              .field__box
+                = p.text_field :kana_first_name, {class: "half", placeholder:"例) ヤマダ"}
+                = p.text_field :kana_last_name, {class: "half", placeholder:"例) タロウ"}
+            .field
+              .field__label
+                = p.label :"生年月日"
+                %span.field__label__attention 必須
+              .field__box
+                = p.date_field :birthday
+            .field
+              .action
+                = f.submit "次へ", class: 'btn'
+

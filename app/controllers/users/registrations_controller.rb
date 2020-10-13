@@ -3,12 +3,14 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+  before_action :authenticate_user!
 
   def index
   end
   # GET /resource/sign_up
   def new
     @user = User.new
+    @profile = @user.build_profile
   end
 
 
@@ -22,20 +24,52 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   session["devise.regist_data"] = {user: @user.attributes}
   #   session["devise.regist_data"][:user]["password"] = params[:user][:password]
   #   @profile = @user.build_profile
-  #   render :new_profile
+  #   render :new_profiles
   # end
 
-  def create_profile
-    @user = User.new(session["devise.regist_data"]["user"])
-    @profile = Profile.new(profile_params)
-    unless @profile.valid?
-      flash.now[:alert] = @profile.errors.full_messages
-      render :new_profile and return
+  # def create_profile
+  #   @user = User.new(session["devise.regist_data"]["user"])
+  #   @profile = Profile.new(profile_params)
+  #   unless @profile.valid?
+  #     flash.now[:alert] = @profile.errors.full_messages
+  #     render :new_profiles and return
+  #   end
+  #   @user.build_profile(@profile.attributes)
+  #   @user.save
+  #   session["devise.regist_data"]["user"].clear
+  #   sign_in(:user, @user)
+  # end
+
+  def create
+    @user = User.new(sign_up_params)
+    @user.build_profile(sign_up_params[:profile_attributes])
+    unless @user.valid?
+      flash.now[:alert] = @user.errors.full_messages
+      render :new and return
     end
-    @user.build_profile(@profile.attributes)
+    session["devise.regist_data"] = {user: @user.attributes}
+    session["devise.regist_data"][:user]["password"] = params[:user][:password]
+    session[:profile_attributes] = sign_up_params[:profile_attributes]
+    @destination = @user.destinations.build
+    # binding.pry
+    render :new_destination
+  end
+
+  def create_destination
+    @user = User.new(session["devise.regist_data"]["user"])
+    @profile = @user.build_profile(session[:profile_attributes])
+    @destination = Destination.new(destination_params)
+    unless @destination.valid?
+      flash.now[:alert] = @destination.errors.full_messages
+      render :new_destination and return
+    end
+    @user.destinations.build(@destination.attributes)
     @user.save
+    @profile.save
     session["devise.regist_data"]["user"].clear
+    session[:profile_attributes].clear
     sign_in(:user, @user)
+
   end
 
   # GET /resource/edit
@@ -64,8 +98,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   protected
 
-  def profiles_params
-    params.require(:profile).permit(:first_name, :last_name, :kana_first_name, :kana_last_name, :birthday,)
+  # def user_params
+  #   params.require(:user).permit(:nickname, profile_attributes:[:first_name, :last_name, :kana_first_name, :kana_last_name, 
+  #     :postal_code, :prefecture_id, :city, :address, 
+  #     :additional_information, :phone_number])
+  # end
+
+
+  def destination_params
+    params.require(:destination).permit(
+      :first_name, :last_name, :kana_first_name, :kana_last_name, 
+      :postal_code, :prefecture_id, :city, :address, 
+      :additional_information, :phone_number)
   end
 
   # If you have extra params to permit, append them to the sanitizer.

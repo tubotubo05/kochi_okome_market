@@ -7,6 +7,7 @@ class User < ApplicationRecord
   validates :nickname, :password, presence: true
 
   has_one :profile, dependent: :destroy
+  accepts_nested_attributes_for :profile
   has_many :destinations, dependent: :destroy
   has_many :items, dependent: :destroy
   has_many :comments,dependent: :destroy
