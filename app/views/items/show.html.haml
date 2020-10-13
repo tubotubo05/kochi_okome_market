@@ -13,7 +13,6 @@
               .sold
                 .sold__inner
                   SOLD
-      //=image_tag @item.item_images[0].image_url.url,class:"main"
       %ul.slider-nav
         - @item.item_images.each do |img|
           %li
@@ -40,9 +39,6 @@
         %td.date
           - if @item.brand.present?
             = @item.brand.name
-      -# %tr
-      -#   %td.title 商品のサイズ
-      -#   %td.date
       %tr
         %td.title 商品の状態
         %td.date
@@ -51,9 +47,6 @@
         %td.title 配送料の負担
         %td.date
           = @item.shipping.shipping
-      -# %tr
-      -#   %td.title 配送方法
-      -#   %td.date
       %tr
         %td.title 配送元地域
         %td.date
@@ -81,7 +74,6 @@
             =icon('fa','flag')
             不適切な商品の通報
   .comment-box
-    -# %p < コメント一覧 >
     - if @comments
       - @comments.each do |comment|
         .comment-content
@@ -95,7 +87,6 @@
               .member-list
                 .name
                   = comment.user.nickname
-                -# %strong :
                 .comment
                   = comment.comment
           - else

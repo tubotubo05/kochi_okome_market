@@ -3,7 +3,6 @@
 .slick-slider {
     position: relative;
     display: block;
-    //box-sizing: border-box;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -38,18 +37,13 @@
     -o-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
 }
-// .slick-slide{
-//     height: 300px;
-//     width: 300px;
-// }
+
 
 .slick-track {
     position: relative;
     left: 0;
     top: 0;
     display: block;
-    // margin-left: auto;
-    // margin-right: auto;
 
     &:before,
     &:after {

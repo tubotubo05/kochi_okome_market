@@ -105,31 +105,9 @@
                 ⭐️1
             .tax
               (税込)
-  -# .pickup-brand
-  -#   .pickup-category__title
-  -#     ピックアップブランド
-  -#   .pickup-category__link
-  -#     = link_to "アーカイバ", root_path, class: "link"
-  -#   .pickup-category__items
-  -#     - 5.times do |num|
-  -#       %a{href: '/items/1', class: "item#{num+1}"}
-  -#         .image
-  -#           = image_tag 'square.png', class: 'image', width: '220px', height: '150px'
-  -#         .context
-  -#           .name
-  -#             テスト
-  -#           .value
-  -#             .value
-  -#               10000円
-  -#             .evaluation
-  -#               ⭐️1
-  -#           .tax
-  -#             (税込)
   .pickup-category
     .pickup-category__title
       レディース
-    -# .pickup-category__link
-    -#   = link_to "新規投稿商品", root_path, class: "link"
     .pickup-category__items
       - @ladies.each do |item|
         = link_to item_path(item.id) do
@@ -152,8 +130,6 @@
   .pickup-category
     .pickup-category__title
       メンズ
-    -# .pickup-category__link
-    -#   = link_to "新規投稿商品", root_path, class: "link"
     .pickup-category__items
       - @mens.each do |item|
         = link_to item_path(item.id) do
@@ -176,8 +152,6 @@
   .pickup-category
     .pickup-category__title
       家電・スマホ・カメラ
-    -# .pickup-category__link
-    -#   = link_to "新規投稿商品", root_path, class: "link"
     .pickup-category__items
       - @home_appliances.each do |item|
         = link_to item_path(item.id) do
@@ -200,8 +174,6 @@
   .pickup-category
     .pickup-category__title
       本・音楽・ゲーム
-    -# .pickup-category__link
-    -#   = link_to "新規投稿商品", root_path, class: "link"
     .pickup-category__items
       - @book.each do |item|
         = link_to item_path(item.id) do
