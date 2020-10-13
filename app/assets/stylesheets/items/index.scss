@@ -77,7 +77,7 @@ a:hover {
       display: flex;
       justify-content: end;
       align-items: center;
-      &__login, &__create {
+      &__login, &__create, &__logout, &__mypage {
         padding: 0px 0px 0px 40px;
         .link {
           color: black;

@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
+  get 'users/show'
   devise_for :users
+
   root 'items#index'
 
-  
 
-  resources :items, only: [:index, :new, :create, :update, :show] do
+
+  resources :items do
     resources :comments,only:[:new,:create,:destroy]
   end
 

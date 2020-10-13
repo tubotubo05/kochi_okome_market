@@ -15,10 +15,13 @@
       .header__bottom__left__brand
         ブランド
     .header__bottom__right
-      -if  user_signed_in? 
-        = link_to "マイページ", destroy_user_session_path, method: :delete
-      -else
-      .header__bottom__right__login
-        = link_to "ログイン", new_user_session_path, class: "link"
-      .header__bottom__right__create
-        = link_to "新規会員登録", new_user_registration_path, class: "link"
+      - if user_signed_in? 
+        .header__bottom__right__mypage
+          = link_to "マイページ", users_show_path(current_user.id), class: "link"
+        .header__bottom__right__logout
+          = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "link"
+      - else
+        .header__bottom__right__login
+          = link_to "ログイン", new_user_session_path, class: "link"
+        .header__bottom__right__create
+          = link_to "新規会員登録", new_user_registration_path, class: "link"
