@@ -56,11 +56,11 @@
         %td.date
           = @item.shipping_day.shipping_day
     .buy-box
-      - if user_signed_in? && current_user.id ==@item.user_id
+      - if @item.buyer_id.present?
+        .bought 売り切れました
+      - elsif user_signed_in? && current_user.id ==@item.user_id
         =link_to "商品の編集","#",class:"edit-btn"
         =link_to "この商品を削除する","#",class:"destroy-btn"
-      - elsif @item.buyer_id.present? 
-        .bought 売り切れました
       -else
         =link_to "購入画面に進む","#",class:"buy-btn"
     .option-box
