@@ -2,17 +2,17 @@
   .new-header
     .new-header__title
       = link_to image_tag(src="logo.png", size: "140x40"), root_path
-    .new-header__progress
-      %ol
-        %li.new-header__progress__text--active{ id: "first" }
-          会員情報
-          .new-header__progress__round--red
-        %li.new-header__progress__text
-          お届け先住所入力
-          .new-header__progress__round    
-        %li.new-header__progress__text{ id: "end" }
-          完了
-          .new-header__progress__round 
+    -# .new-header__progress
+    -#   %ol
+    -#     %li.new-header__progress__text--active{ id: "first" }
+    -#       会員情報
+    -#       .new-header__progress__round--red
+    -#     %li.new-header__progress__text
+    -#       お届け先住所入力
+    -#       .new-header__progress__round    
+    -#     %li.new-header__progress__text{ id: "end" }
+    -#       完了
+    -#       .new-header__progress__round 
   .main
     .main__box
       .main__title
@@ -44,7 +44,9 @@
               = f.label :都道府県
               %span.field__label__attention 必須
             .field__box
-              = f.text_field :prefecture_id
+              = f.text_field :prefecture_id, {placeholder:"例) 北海道"}
+            -# .select-box
+            -#   = f.select :prefecture_id, options_for_select(Destination.prefecture_ids), {prompt: "選択してください"},class:"frame"
           .field
             .field__label
               = f.label :市区町村

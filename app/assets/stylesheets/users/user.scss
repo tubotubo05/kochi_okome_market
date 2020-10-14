@@ -129,11 +129,27 @@
           padding: 0;
           font-size: 14px;
         }
+        .select-box {
+          .frame {
+            width: 100%;
+            position: relative;
+            z-index: 2;
+            height: 48px;
+            padding: 0 16px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            background: 0;
+            font-size: 16px;
+            line-height: 1.5;
+            cursor: pointer;
+          }
+        }
       }
+    }
       :first-child {
         margin-top: 0;
       }
-    }
+  }
     .login-box {
       max-width: none;
       width: 456px;
@@ -167,5 +183,4 @@
     line-height: 40px;
     text-decoration: none;
   }
-    
-  }
+ 
