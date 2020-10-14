@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   end
   post "items/confirm" => "items#confirm"
 
+  resources :purchases,only:[:index]
+
   namespace :api do
     resources :categories, only: :index, defaults: { format: 'json' }
   end
