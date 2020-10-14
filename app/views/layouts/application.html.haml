@@ -11,6 +11,8 @@
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application'
     %script{type: "text/javascript", src: "//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"}
+    %script{src: "https://js.pay.jp/", type: "text/javascript"}
+
   %body
     .notifications
       - flash.each do |key, value|

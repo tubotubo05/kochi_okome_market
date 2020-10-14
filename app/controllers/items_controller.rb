@@ -21,12 +21,26 @@ class ItemsController < ApplicationController
     @tax = @item.price * 1.1
   end
 
+  def edit
+  end
+
+  def update
+  end
+
+  def destroy
+    @item = Item.find(params[:id]).destroy
+    respond_to do |format|
+      format.html {redirect_to users_show_path(current_user)}
+      format.json
+    end
+  end
+
+
   def new
     @item = Item.new
     @item.item_images.build
     @brand_id = ""
   end
-
 
   def create
     addBrand()
@@ -47,14 +61,6 @@ class ItemsController < ApplicationController
       flash.now[:alert] = '画像を追加してください'
       @item.item_images.build
       render new_item_path
-    end
-  end
-
-  def update
-    if @product.update(product_params)
-      redirect_to root_path
-    else
-      render :edit
     end
   end
 

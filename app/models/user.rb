@@ -6,5 +6,6 @@ class User < ApplicationRecord
 
   has_many :items, dependent: :destroy
   has_many :comments,dependent: :destroy
-  
+  has_many :cards, dependent: :destroy
+
 end
