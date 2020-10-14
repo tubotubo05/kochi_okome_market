@@ -19,7 +19,7 @@
     display: flex;
     &__left {
       width: 230px;
-      height: 270px;
+      height: 315px;
       background-color: #3CCACE;
       margin-right: 50px;
       .link {
@@ -31,6 +31,9 @@
         padding: 10px 0px 10px 20px;
         display: block;
         cursor:pointer;
+      }
+      .select {
+        background-color: #91CACE;
       }
     }
     &__center {

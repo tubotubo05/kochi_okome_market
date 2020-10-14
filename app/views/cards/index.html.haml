@@ -1,0 +1,38 @@
+.card
+  = render "header"
+
+  .card__main
+    .card__main__left
+      = link_to "トップページ", root_path, class: "link"
+      = link_to "マイページ", users_show_path(current_user.id), class: "link"
+      = link_to "プロフィール", root_path, class: "link"
+      = link_to "送付先住所情報", root_path, class: "link"
+      = link_to "メール/パスワード", root_path, class: "link"
+      = link_to "クレジットカード情報", cards_path, class: "link select"
+      = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "link"
+    .card__main__right
+      .title
+        カード情報
+      - if @card
+        .main
+          .number
+            = "************" + @card[:last4]
+          .bottom
+            .date
+              = @card[:exp_month]
+              \/
+              = @card[:exp_year]
+            .brand
+              = @card[:brand]
+        .button
+          = link_to "削除", card_path(current_user.cards), method: :delete, class: "delete-card"
+      - else
+        .regist
+          = link_to new_card_path, class: "new" do
+            クレジットカード登録
+
+  = render "footer"
+
+
+
+

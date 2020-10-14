@@ -1,18 +1,17 @@
 Rails.application.routes.draw do
-  get 'users/show'
   devise_for :users
+  get 'users/show'
+
+  resources :cards, only: [:index, :new, :create, :destroy]
 
   root 'items#index'
-
-
-
   resources :items do
     resources :comments,only:[:new,:create,:destroy]
   end
+  post "items/confirm" => "items#confirm"
 
   namespace :api do
     resources :categories, only: :index, defaults: { format: 'json' }
   end
-
 
 end
