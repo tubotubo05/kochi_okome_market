@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, except: [:index, :new, :create, :show]
+  before_action :set_item, except: [:index, :new, :create, :destroy]
 
   def index
     @items = Item.includes(:user).order('created_at DESC')
@@ -13,14 +13,12 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
     @comment =Comment.new
     @comments =@item.comments.order(created_at: :desc)
     @tax = @item.price * 1.1
   end
 
   def edit
-    @item = Item.find(params[:id])
     @images = @item.item_images
     if @item.brand
       @brand = @item.brand.name
@@ -35,7 +33,6 @@ class ItemsController < ApplicationController
   def update
     addBrand()
     createCategoryId()
-    @item = Item.find(params[:id])
     changeBrandId()
     if !@item.update(item_params)
       message = '入力必須項目に入力してください'
