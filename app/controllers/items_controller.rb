@@ -2,11 +2,11 @@ class ItemsController < ApplicationController
   before_action :set_item, except: [:index, :new, :create, :destroy]
 
   def index
-    @items = Item.includes(:user).order('created_at DESC')
-    @ladies = Item.where(category_id:1.14..210)
-    @mens = Item.where(category_id: 2.211..354)
-    @book = Item.where(category_id:6.629..686)
-    @home_appliances = Item.where(category_id:8.897..982)
+    @items = Item.includes(:user).order('created_at DESC').limit(6)
+    @ladies = Item.where(category_id: 1).or(Item.where(category_id: 14..210)).order('created_at DESC').limit(6)
+    @mens = Item.where(category_id: 2).or(Item.where(category_id: 211..354)).order('created_at DESC').limit(6)
+    @book = Item.where(category_id: 5).or(Item.where(category_id: 629..686)).order('created_at DESC').limit(6)
+    @home_appliances = Item.where(category_id: 8).or(Item.where(category_id: 897..982)).order('created_at DESC').limit(6)
   end
 
   def confirm
