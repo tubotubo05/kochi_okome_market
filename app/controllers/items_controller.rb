@@ -3,10 +3,10 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.includes(:user).order('created_at DESC')
-    @ladies = Item.where(category_id:1..210)
-    @mens = Item.where(category_id: 211..354)
-    @book = Item.where(category_id:629..686)
-    @home_appliances = Item.where(category_id:897..982)
+    @ladies = Item.where(category_id:1.14..210)
+    @mens = Item.where(category_id: 2.211..354)
+    @book = Item.where(category_id:6.629..686)
+    @home_appliances = Item.where(category_id:8.897..982)
   end
 
 
