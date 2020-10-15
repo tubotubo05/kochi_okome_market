@@ -28,11 +28,11 @@
               = f.text_field :first_name, {class: "half", placeholder:"例) 山田"}
               = f.text_field :last_name, {class: "half", placeholder:"例) 太郎"}
             .field__label
-              = f.label :"お名前(カナ)"
+              = f.label :"お名前(全角かな)"
               %span.field__label__attention 必須
             .field__box
-              = f.text_field :kana_first_name, {class: "half", placeholder:"例) ヤマダ"}
-              = f.text_field :kana_last_name, {class: "half", placeholder:"例) タロウ"}
+              = f.text_field :kana_first_name, {class: "half", placeholder:"例) やまだ"}
+              = f.text_field :kana_last_name, {class: "half", placeholder:"例) たろう"}
           .field
             .field__label
               = f.label :郵便番号

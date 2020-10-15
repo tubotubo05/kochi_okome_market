@@ -59,11 +59,11 @@
                 = p.text_field :last_name, {class: "half", placeholder:"例) 太郎"}
             .field
               .field__label
-                = p.label :"お名前(カナ)"
+                = p.label :"お名前(全角かな)"
                 %span.field__label__attention 必須
               .field__box
-                = p.text_field :kana_first_name, {class: "half", placeholder:"例) ヤマダ"}
-                = p.text_field :kana_last_name, {class: "half", placeholder:"例) タロウ"}
+                = p.text_field :kana_first_name, {class: "half", placeholder:"例) やまだ"}
+                = p.text_field :kana_last_name, {class: "half", placeholder:"例) たろう"}
             .field
               .field__label
                 = p.label :"生年月日"
