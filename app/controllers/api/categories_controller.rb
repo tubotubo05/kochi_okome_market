@@ -15,4 +15,10 @@ class Api::CategoriesController < ApplicationController
       @categories = category.children
     end
   end
+
+  def new
+    category = Category.find(params[:category_id])
+    @select_parent = category.parent
+    @categories = Category.find(@select_parent[:id]).children
+  end
 end

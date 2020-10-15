@@ -26,7 +26,6 @@ $(document).on('turbolinks:load', ()=> {
   for(i = 0; i < $(".previews__field").length; i++){
     existCount.push(i);
   }
-  console.log(existCount);
 
   $('.top__image__upload').on('change', '.file__image', function(e) {
     

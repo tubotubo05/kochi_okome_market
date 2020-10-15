@@ -9,7 +9,6 @@ class ItemsController < ApplicationController
     @home_appliances = Item.where(category_id:8.897..982)
   end
 
-
   def confirm
   end
 
@@ -26,33 +25,31 @@ class ItemsController < ApplicationController
     if @item.brand
       @brand = @item.brand.name
     end
+    if @item.category.ancestry == nil
+      @ancestry = "nil"
+    else
+      @ancestry = @item.category.ancestry
+    end
   end
 
   def update
     addBrand()
     createCategoryId()
     @item = Item.find(params[:id])
-    #
-    if params[:item][:] != nil
-      @brand_id = @item.brand[:name]
-    else
-      @brand_id = nil
-    end
-    #
-    if params[:item][:item_images_attributes] != nil
-      if !@item.update(item_params)
-        flash.now[:alert] = '入力必須項目に入力してください'
-        if @item[:price] < 1
-          flash.now[:alert] = '金額は1以上を入力してください'
-        end
-        redirect_to edit_item_path(params[:id])
-      else
-        redirect_to item_path(params[:id])
+    changeBrandId()
+    if !@item.update(item_params)
+      message = '入力必須項目に入力してください'
+      if params[:item][:price].to_i < 1
+        message = '金額は1以上を入力してください'
+      elsif params[:item][:price].to_i >= 10000000
+        message = '金額は99,999,999以下を入力してください'
       end
+      if params[:item][:name].length > 40
+        message = '商品名は40文字以内で入力してください'
+      end
+      redirect_to edit_item_path(params[:id]), flash: {error: message}
     else
-      flash.now[:alert] = '画像を追加してください'
-      @item.item_images.build
-      redirect_to edit_item_path(params[:id])
+      redirect_to item_path(params[:id])
     end
   end
 
@@ -83,6 +80,11 @@ class ItemsController < ApplicationController
         flash.now[:alert] = '入力必須項目に入力してください'
         if @item[:price] < 1
           flash.now[:alert] = '金額は1以上を入力してください'
+        elsif @item[:price] >= 10000000
+          flash.now[:alert] = '金額は99,999,999以下を入力してください'
+        end
+        if @item[:name].length > 40
+          flash.now[:alert] = '商品名は40文字以内で入力してください'
         end
         render new_item_path
       end
@@ -124,6 +126,15 @@ class ItemsController < ApplicationController
   def nilBrand
     if params[:item][:brand] == ""
       params[:item][:brand] = nil
+    end
+  end
+
+  def changeBrandId
+    if params[:item][:brand] != nil
+      brand_id = Brand.all.where(name: params[:item][:brand])
+      @brand_id = brand_id[0].id
+    else
+      @brand_id = nil
     end
   end
 
