@@ -168,7 +168,7 @@ input[type="file"] {
       padding: 70px 50px 70px 50px;
       display: flex;
       justify-content: center;
-      &__put-up {
+      &__put-up, &__edit {
         width: 400px;
         height: 80px;
         font-size: 30px;

@@ -11,7 +11,6 @@ class ItemsController < ApplicationController
 
 
   def confirm
-
   end
 
   def show
@@ -22,9 +21,39 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    @item = Item.find(params[:id])
+    @images = @item.item_images
+    if @item.brand
+      @brand = @item.brand.name
+    end
   end
 
   def update
+    addBrand()
+    createCategoryId()
+    @item = Item.find(params[:id])
+    #
+    if params[:item][:] != nil
+      @brand_id = @item.brand[:name]
+    else
+      @brand_id = nil
+    end
+    #
+    if params[:item][:item_images_attributes] != nil
+      if !@item.update(item_params)
+        flash.now[:alert] = '入力必須項目に入力してください'
+        if @item[:price] < 1
+          flash.now[:alert] = '金額は1以上を入力してください'
+        end
+        redirect_to edit_item_path(params[:id])
+      else
+        redirect_to item_path(params[:id])
+      end
+    else
+      flash.now[:alert] = '画像を追加してください'
+      @item.item_images.build
+      redirect_to edit_item_path(params[:id])
+    end
   end
 
   def destroy
@@ -76,7 +105,7 @@ class ItemsController < ApplicationController
       params[:item][:price] = 0
     end
     params.require(:item).permit(:name, :price, :description, :prefecture_id, :condition_id, :shipping_id, :shipping_day_id,
-      item_images_attributes: [:image_url]).merge(category_id: @category_id, brand_id: @brand_id, user_id: current_user.id)
+      item_images_attributes: [:image_url, :_destroy, :id]).merge(category_id: @category_id, brand_id: @brand_id, user_id: current_user.id)
   end
 
   def addBrand
