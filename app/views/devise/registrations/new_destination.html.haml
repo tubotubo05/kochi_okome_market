@@ -46,7 +46,7 @@
             .field__box
               = f.text_field :prefecture_id, {placeholder:"例) 北海道"}
             -# .select-box
-            -#   = f.select :prefecture_id, options_for_select(Destination.prefecture_ids), {prompt: "選択してください"},class:"frame"
+            -#   = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"}, class:"frame"
           .field
             .field__label
               = f.label :市区町村

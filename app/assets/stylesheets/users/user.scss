@@ -118,6 +118,19 @@
             width: calc(50% - 6px);
           }
         }
+        .year, .month, .day {
+          width: 76px;
+          height: 48px;
+          border: 1px solid #cccccc;
+          border-radius: 4px;
+        }
+        .select {
+          width: 76px;
+          height: 48px;
+          border: 1px solid #cccccc;
+          border-radius: 4px;
+          margin-top: 8px;
+        }
         .profile-title {
           display: block;
           font-size: 16px;
