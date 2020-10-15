@@ -17,8 +17,7 @@ class Api::CategoriesController < ApplicationController
   end
 
   def new
-    category = Category.find(params[:category_id])
-    @select_parent = category.parent
+    @select_parent = Category.find(params[:category_id]).parent
     @categories = Category.find(@select_parent[:id]).children
   end
 end
