@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :purchases,only:[:index]
 
   namespace :api do
-    resources :categories, only: :index, defaults: { format: 'json' }
+    resources :categories, only: [:index, :new], defaults: { format: 'json' }
   end
 
 end

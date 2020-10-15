@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, except: [:index, :new, :create, :show]
+  before_action :set_item, except: [:index, :new, :create, :destroy]
 
   def index
     @items = Item.includes(:user).order('created_at DESC')
@@ -9,22 +9,45 @@ class ItemsController < ApplicationController
     @home_appliances = Item.where(category_id:8.897..982)
   end
 
-
   def confirm
-
   end
 
   def show
-    @item = Item.find(params[:id])
     @comment =Comment.new
     @comments =@item.comments.order(created_at: :desc)
     @tax = @item.price * 1.1
   end
 
   def edit
+    @images = @item.item_images
+    if @item.brand
+      @brand = @item.brand.name
+    end
+    if @item.category.ancestry == nil
+      @ancestry = "nil"
+    else
+      @ancestry = @item.category.ancestry
+    end
   end
 
   def update
+    addBrand()
+    createCategoryId()
+    changeBrandId()
+    if !@item.update(item_params)
+      message = '入力必須項目に入力してください'
+      if params[:item][:price].to_i < 1
+        message = '金額は1以上を入力してください'
+      elsif params[:item][:price].to_i >= 10000000
+        message = '金額は99,999,999以下を入力してください'
+      end
+      if params[:item][:name].length > 40
+        message = '商品名は40文字以内で入力してください'
+      end
+      redirect_to edit_item_path(params[:id]), flash: {error: message}
+    else
+      redirect_to item_path(params[:id])
+    end
   end
 
   def destroy
@@ -54,6 +77,11 @@ class ItemsController < ApplicationController
         flash.now[:alert] = '入力必須項目に入力してください'
         if @item[:price] < 1
           flash.now[:alert] = '金額は1以上を入力してください'
+        elsif @item[:price] >= 10000000
+          flash.now[:alert] = '金額は99,999,999以下を入力してください'
+        end
+        if @item[:name].length > 40
+          flash.now[:alert] = '商品名は40文字以内で入力してください'
         end
         render new_item_path
       end
@@ -76,7 +104,7 @@ class ItemsController < ApplicationController
       params[:item][:price] = 0
     end
     params.require(:item).permit(:name, :price, :description, :prefecture_id, :condition_id, :shipping_id, :shipping_day_id,
-      item_images_attributes: [:image_url]).merge(category_id: @category_id, brand_id: @brand_id, user_id: current_user.id)
+      item_images_attributes: [:image_url, :_destroy, :id]).merge(category_id: @category_id, brand_id: @brand_id, user_id: current_user.id)
   end
 
   def addBrand
@@ -95,6 +123,15 @@ class ItemsController < ApplicationController
   def nilBrand
     if params[:item][:brand] == ""
       params[:item][:brand] = nil
+    end
+  end
+
+  def changeBrandId
+    if params[:item][:brand] != nil
+      brand_id = Brand.all.where(name: params[:item][:brand])
+      @brand_id = brand_id[0].id
+    else
+      @brand_id = nil
     end
   end
 

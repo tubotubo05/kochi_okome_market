@@ -11,16 +11,23 @@ class Item < ApplicationRecord
   belongs_to_active_hash :shipping
   belongs_to_active_hash :shipping_day
 
-  validates :name, presence: true
+  validates :name, presence: true, length: { maximum: 40 }
   validates :description, presence: true
-  validates :price, presence: true, :numericality => { :greater_than_or_equal_to => 1 }
+  validates :price, presence: true, :numericality => { :greater_than_or_equal_to => 1,  :less_than => 10000000}
+
   validate  :image_lists_validation
 
   def image_lists_validation
-    image_validation = item_images
-    if image_validation.length < 1 then
+    delete_count = 0
+    item_images.each do |img|
+      if img.marked_for_destruction?
+        delete_count += 1
+      end
+    end
+    validation_num = item_images.length - delete_count
+    if validation_num < 1 then
       errors.add(:item_images, "画像を１枚以上添付してください")
-    elsif image_validation.length > 5
+    elsif validation_num > 5
       errors.add(:item_images, "画像は５枚まで添付可能です")
     end
   end

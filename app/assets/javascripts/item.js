@@ -1,5 +1,7 @@
 $(document).on('turbolinks:load', ()=> {
 
+  if (!$('.top__image__upload')[0]) return false;
+
   function buildFileField(index) {
     const html = `<div class="file" data-index="${index}">
                     <input id="img-file${index}" class="file__image" type="file"
@@ -21,6 +23,9 @@ $(document).on('turbolinks:load', ()=> {
   }
 
   let existCount = [];
+  for(i = 0; i < $(".previews__field").length; i++){
+    existCount.push(i);
+  }
 
   $('.top__image__upload').on('change', '.file__image', function(e) {
     
@@ -47,6 +52,8 @@ $(document).on('turbolinks:load', ()=> {
   $('.top__image__upload').on('click', '.remove', function() {
     $(this).parent().parent().remove();
     let targetIndex = $(this).parent().parent().data('index');
+    const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
+    if (hiddenCheck) hiddenCheck.prop('checked', true);
     $(`div[data-index="${targetIndex}"]`).remove();
 
     var c = existCount.indexOf(targetIndex);
