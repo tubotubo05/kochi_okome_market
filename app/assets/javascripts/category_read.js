@@ -1,6 +1,7 @@
 document.addEventListener('turbolinks:load', function () {
 
-  if (!$('.previews__field')[0]) return false;
+  //if (!$('.previews__field')[0]) return false;
+  if(!$('#item_condition_id option:selected').val()) return false;
 
   function buildCategoryForm(categories) {
     let options = "";
