@@ -9,4 +9,5 @@ class UsersController < ApplicationController
 
   def email
   end
+
 end

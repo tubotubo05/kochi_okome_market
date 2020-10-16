@@ -1,31 +1,69 @@
-.AccountPage
-  .AccountPage__title
-    %h2 Create Account
-    %h5 新規アカウントの作成
-    = render "devise/shared/links"
-  .AccountPage__form
-    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-      = devise_error_messages!
-      .FormField
-        .FormField__label--normal
-          = f.label :nickname
-        .FormField__input--normal
-          = f.text_field :nickname, autofocus: true
-      .FormField
-        .FormField__label--normal
-          = f.label :email
-        .FormField__input--normal
-          = f.email_field :email
-      .FormField
-        .FormField__label--normal
-          = f.label :password
-          %i (英数字8文字以上)
-        .FormField__input--normal
-          = f.password_field :password, autocomplete: "off"
-      .FormField
-        .FormField__label--normal
-          = f.label :password_confirmation
-        .FormField__input--normal
-          = f.password_field :password_confirmation, autocomplete: "off"
-      .actions
-        = f.submit "Create Account", class: 'Button UserButton'
+.form
+  .new-header
+    .new-header__title
+      = link_to image_tag(src="logo.png", size: "185x49"), root_path
+  .main
+    .main__box
+      .main__title
+        会員情報入力
+      = form_for(@user, url: user_registration_path) do |f|
+        = render "devise/shared/error_messages", resource: @user
+        .box
+          .field
+            .field__label
+              = f.label :ニックネーム
+              %span.field__label__attention 必須
+            .field__box
+              = f.text_field :nickname, {placeholder:"例) FURIMA太郎",class:'input'}
+          .field
+            .field__label
+              = f.label :メールアドレス
+              %span.field__label__attention 必須
+            .field__box
+              = f.email_field :email, {autofocus: true, autocomplete: "email", placeholder:"PC・携帯どちらでも可",class:'input'}
+          .field
+            .field__label
+              = f.label :パスワード
+              %span.field__label__attention 必須
+            .field__box
+              = f.password_field :password, {autocomplete: "new-password", placeholder:"７文字以上の半角英数文字",class:'input'}
+          .field
+            .field__label
+              = f.label :パスワード確認用
+              %span.field__label__attention 必須
+            .field__box
+              = f.password_field :password_confirmation, autocomplete: "new-password"
+          .field
+            .profile-title 
+              本人確認
+            .text 
+              安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
+          = f.fields_for :profile do |p|
+            .field
+              .field__label
+                = p.label :"お名前(全角)"
+                %span.field__label__attention 必須
+              .field__box
+                = p.text_field :first_name, {class: "half", placeholder:"例) 山田"}
+                = p.text_field :last_name, {class: "half", placeholder:"例) 太郎"}
+            .field
+              .field__label
+                = p.label :"お名前(全角かな)"
+                %span.field__label__attention 必須
+              .field__box
+                = p.text_field :kana_first_name, {class: "half", placeholder:"例) やまだ"}
+                = p.text_field :kana_last_name, {class: "half", placeholder:"例) たろう"}
+            .field
+              .field__label
+                = p.label :"生年月日"
+                %span.field__label__attention 必須
+              .field__box
+                = p.date_select :birthday, {prompt:"--", use_month_numbers: true,start_year:Time.now.year, end_year:1900}, {class: 'select'}
+            .field
+              .action
+                = f.submit "次へ", class: 'btn'
+  .new-footer
+    .new-footer__title
+      .last
+        = link_to image_tag(src="logo-white.png", size: "185x49"), root_path
+

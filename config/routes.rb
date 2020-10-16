@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
-  devise_for :users
-  get 'users/show'
-  get "users/email" => "users#email"
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
+  devise_scope :user do
+    get 'destinations', to: 'users/registrations#new_destination'
+    post 'destinations', to: 'users/registrations#create_destination'
+  end
 
+
+  resources :users, only: [:show, :edit]
   resources :cards, only: [:index, :new, :create, :destroy]
 
   root 'items#index'
@@ -17,4 +23,6 @@ Rails.application.routes.draw do
     resources :categories, only: [:index, :new], defaults: { format: 'json' }
   end
 
+
 end
+

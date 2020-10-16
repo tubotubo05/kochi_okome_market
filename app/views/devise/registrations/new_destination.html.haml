@@ -1,0 +1,62 @@
+.form
+  .new-header
+    .new-header__title
+      = link_to image_tag(src="logo.png", size: "140x40"), root_path
+  .main
+    .main__box
+      .main__title
+        お届け先住所入力
+      = form_for @destination do |f|
+        = render "devise/shared/error_messages", resource: @destination
+        .box
+          .field
+            .field__label
+              = f.label :"お名前(全角)"
+              %span.field__label__attention 必須
+            .field__box
+              = f.text_field :first_name, {class: "half", placeholder:"例) 山田"}
+              = f.text_field :last_name, {class: "half", placeholder:"例) 太郎"}
+            .field__label
+              = f.label :"お名前(全角かな)"
+              %span.field__label__attention 必須
+            .field__box
+              = f.text_field :kana_first_name, {class: "half", placeholder:"例) やまだ"}
+              = f.text_field :kana_last_name, {class: "half", placeholder:"例) たろう"}
+          .field
+            .field__label
+              = f.label :郵便番号
+              %span.field__label__attention 必須
+            .field__box
+              = f.text_field :postal_code, {placeholder:"例) 1234567"}
+          .field
+            .field__label
+              = f.label :都道府県
+              %span.field__label__attention 必須
+            .select-box
+              = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"}, class:"frame"
+          .field
+            .field__label
+              = f.label :市区町村
+              %span.field__label__attention 必須
+            .field__box
+              = f.text_field :city, {placeholder:"例) 横浜市緑区"}
+          .field
+            .field__label
+              = f.label :番地
+              %span.field__label__attention 必須
+            .field__box
+              = f.text_field :address, {placeholder:"例) 青山1ー1ー1"}
+          .field
+            .field__label
+              = f.label :マンション名・部屋番号
+              %span.field__label__attention2 任意
+            .field__box
+              = f.text_field :additional_information, {placeholder:"例) 柳ビル103"}
+          .field
+            .field__label
+              = f.label :電話番号
+              %span.field__label__attention2 任意
+            .field__box
+              = f.number_field :phone_number, {placeholder:"例) 09012345678"}
+          .field
+            = f.submit "登録する" , class: 'btn' 
