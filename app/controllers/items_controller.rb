@@ -72,6 +72,11 @@ class ItemsController < ApplicationController
     if @item[:brand_id] != nil
       @brand_id = @item.brand[:name]
     end
+    if @item.category.ancestry == nil
+      @ancestry = "nil"
+    else
+      @ancestry = @item.category.ancestry
+    end
     if params[:item][:item_images_attributes] != nil
       if !@item.save
         flash.now[:alert] = '入力必須項目に入力してください'
