@@ -9,8 +9,6 @@ class ItemsController < ApplicationController
     @home_appliances = Item.where(category_id: 8).or(Item.where(category_id: 897..982)).order('created_at DESC').limit(6)
   end
 
-  def confirm
-  end
 
   def show
     @comment =Comment.new
