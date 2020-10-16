@@ -1,4 +1,8 @@
-= link_to image_tag(src='icon_camera.png', size: "70x70"), new_item_path, class: "display"
+= link_to new_item_path, class: "display" do
+  = image_tag "icon_camera.png", width: '70px', height: '70px'
+  .text
+    出品する
+
 .main
   .image-top
     .title
@@ -86,7 +90,7 @@
         = link_to item_path(item.id) do
           .image
             = image_tag item.item_images[0].image_url.url, class: 'image-tag', width: '220px', height: '150px'
-            -if item.buyer_id.present? 
+            -if item.buyer_id.present?
               .sold
                 .sold__inner
                   SOLD
@@ -109,7 +113,7 @@
           = link_to item_path(item.id) do
             .image
               = image_tag item.item_images[0].image_url.url, class: 'image-tag', width: '220px', height: '150px'
-              -if item.buyer_id.present? 
+              -if item.buyer_id.present?
                 .sold
                   .sold__inner
                     SOLD
@@ -132,7 +136,7 @@
           = link_to item_path(item.id) do
             .image
               = image_tag item.item_images[0].image_url.url, class: 'image-tag', width: '220px', height: '150px'
-              -if item.buyer_id.present? 
+              -if item.buyer_id.present?
                 .sold
                   .sold__inner
                     SOLD
@@ -155,7 +159,7 @@
           = link_to item_path(item.id) do
             .image
               = image_tag item.item_images[0].image_url.url, class: 'image-tag', width: '220px', height: '150px'
-              -if item.buyer_id.present? 
+              -if item.buyer_id.present?
                 .sold
                   .sold__inner
                     SOLD
@@ -178,7 +182,7 @@
           = link_to item_path(item.id) do
             .image
               = image_tag item.item_images[0].image_url.url, class: 'image-tag', width: '220px', height: '150px'
-              -if item.buyer_id.present? 
+              -if item.buyer_id.present?
                 .sold
                   .sold__inner
                     SOLD
@@ -192,4 +196,3 @@
                   ⭐️1
               .tax
                 (税込)
-  
