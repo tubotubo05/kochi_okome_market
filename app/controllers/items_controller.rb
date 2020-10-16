@@ -53,7 +53,7 @@ class ItemsController < ApplicationController
   def destroy
     @item = Item.find(params[:id]).destroy
     respond_to do |format|
-      format.html {redirect_to users_show_path(current_user)}
+      format.html {redirect_to user_path(current_user.id)}
       format.json
     end
   end
