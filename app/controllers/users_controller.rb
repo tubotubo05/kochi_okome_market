@@ -6,4 +6,7 @@ class UsersController < ApplicationController
       @images.push([item, ItemImage.where(item_id: item[:id])])
     end
   end
+
+  def email
+  end
 end

@@ -105,92 +105,96 @@
                 ⭐️1
             .tax
               (税込)
-  .pickup-category
-    .pickup-category__title
-      レディース
-    .pickup-category__items
-      - @ladies.each do |item|
-        = link_to item_path(item.id) do
-          .image
-            = image_tag item.item_images[0].image_url.url, class: 'image-tag', width: '220px', height: '150px'
-            -if item.buyer_id.present? 
-              .sold
-                .sold__inner
-                  SOLD
-          .context
-            .name
-              = item.name
-            .value
+  - if @ladies.length != 0
+    .pickup-category
+      .pickup-category__title
+        レディース
+      .pickup-category__items
+        - @ladies.each do |item|
+          = link_to item_path(item.id) do
+            .image
+              = image_tag item.item_images[0].image_url.url, class: 'image-tag', width: '220px', height: '150px'
+              -if item.buyer_id.present? 
+                .sold
+                  .sold__inner
+                    SOLD
+            .context
+              .name
+                = item.name
               .value
-                = (item.price * 1.1).round
-              .evaluation
-                ⭐️1
-            .tax
-              (税込)
-  .pickup-category
-    .pickup-category__title
-      メンズ
-    .pickup-category__items
-      - @mens.each do |item|
-        = link_to item_path(item.id) do
-          .image
-            = image_tag item.item_images[0].image_url.url, class: 'image-tag', width: '220px', height: '150px'
-            -if item.buyer_id.present? 
-              .sold
-                .sold__inner
-                  SOLD
-          .context
-            .name
-              = item.name
-            .value
+                .value
+                  = (item.price * 1.1).round
+                .evaluation
+                  ⭐️1
+              .tax
+                (税込)
+  - if @mens.length != 0
+    .pickup-category
+      .pickup-category__title
+        メンズ
+      .pickup-category__items
+        - @mens.each do |item|
+          = link_to item_path(item.id) do
+            .image
+              = image_tag item.item_images[0].image_url.url, class: 'image-tag', width: '220px', height: '150px'
+              -if item.buyer_id.present? 
+                .sold
+                  .sold__inner
+                    SOLD
+            .context
+              .name
+                = item.name
               .value
-                = (item.price * 1.1).round
-              .evaluation
-                ⭐️1
-            .tax
-              (税込)
-  .pickup-category
-    .pickup-category__title
-      家電・スマホ・カメラ
-    .pickup-category__items
-      - @home_appliances.each do |item|
-        = link_to item_path(item.id) do
-          .image
-            = image_tag item.item_images[0].image_url.url, class: 'image-tag', width: '220px', height: '150px'
-            -if item.buyer_id.present? 
-              .sold
-                .sold__inner
-                  SOLD
-          .context
-            .name
-              = item.name
-            .value
+                .value
+                  = (item.price * 1.1).round
+                .evaluation
+                  ⭐️1
+              .tax
+                (税込)
+  - if @home_appliances.length != 0
+    .pickup-category
+      .pickup-category__title
+        家電・スマホ・カメラ
+      .pickup-category__items
+        - @home_appliances.each do |item|
+          = link_to item_path(item.id) do
+            .image
+              = image_tag item.item_images[0].image_url.url, class: 'image-tag', width: '220px', height: '150px'
+              -if item.buyer_id.present? 
+                .sold
+                  .sold__inner
+                    SOLD
+            .context
+              .name
+                = item.name
               .value
-                = (item.price * 1.1).round
-              .evaluation
-                ⭐️1
-            .tax
-              (税込)
-  .pickup-category
-    .pickup-category__title
-      本・音楽・ゲーム
-    .pickup-category__items
-      - @book.each do |item|
-        = link_to item_path(item.id) do
-          .image
-            = image_tag item.item_images[0].image_url.url, class: 'image-tag', width: '220px', height: '150px'
-            -if item.buyer_id.present? 
-              .sold
-                .sold__inner
-                  SOLD
-          .context
-            .name
-              = item.name
-            .value
+                .value
+                  = (item.price * 1.1).round
+                .evaluation
+                  ⭐️1
+              .tax
+                (税込)
+  - if @book.length != 0
+    .pickup-category
+      .pickup-category__title
+        本・音楽・ゲーム
+      .pickup-category__items
+        - @book.each do |item|
+          = link_to item_path(item.id) do
+            .image
+              = image_tag item.item_images[0].image_url.url, class: 'image-tag', width: '220px', height: '150px'
+              -if item.buyer_id.present? 
+                .sold
+                  .sold__inner
+                    SOLD
+            .context
+              .name
+                = item.name
               .value
-                = (item.price * 1.1).round
-              .evaluation
-                ⭐️1
-            .tax
-              (税込)
+                .value
+                  = (item.price * 1.1).round
+                .evaluation
+                  ⭐️1
+              .tax
+                (税込)
   

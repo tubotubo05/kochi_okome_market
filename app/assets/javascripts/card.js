@@ -16,7 +16,7 @@ document.addEventListener('turbolinks:load', function () {
 
     Payjp.createToken(card, (status, response) => {
       if (status === 200) {
-        alert("カードを登録しました");
+        console.log("カードを登録しました");
         $("#card_token").append(`<input type="hidden" name="payjp_token" value=${response.id}>`);
         $("#card_number_form").removeAttr("name");
         $("#cvc_form").removeAttr("name");

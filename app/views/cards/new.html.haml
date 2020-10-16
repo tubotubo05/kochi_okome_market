@@ -1,21 +1,11 @@
-%a{href: '/items/new', class: "display"}
-  .display__text
-    出品する
-  .display__link
-    = image_tag 'icon_camera.png', class: 'image', width: '70px', height: '70px'
+= render "put-up"
 
 .card
   = render "header"
 
   .card__main
     .card__main__left
-      = link_to "トップページ", root_path, class: "link"
-      = link_to "マイページ", users_show_path(current_user.id), class: "link"
-      = link_to "プロフィール", root_path, class: "link"
-      = link_to "送付先住所情報", root_path, class: "link"
-      = link_to "メール/パスワード", root_path, class: "link"
-      = link_to "クレジットカード情報", cards_path, class: "link select"
-      = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "link"
+      = render "link"
     .card__main__right
       .title
         カード情報登録

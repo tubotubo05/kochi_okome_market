@@ -1,0 +1,7 @@
+= link_to "トップページ", root_path, class: "link"
+= link_to "マイページ", users_show_path(current_user.id), class: "link"
+= link_to "プロフィール", root_path, class: "link"
+= link_to "送付先住所情報", root_path, class: "link"
+= link_to "メール/パスワード", users_email_path, class: "link"
+= link_to "クレジットカード情報", cards_path, class: "link select"
+= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "link"

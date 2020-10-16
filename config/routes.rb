@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   get 'users/show'
+  get "users/email" => "users#email"
 
   resources :cards, only: [:index, :new, :create, :destroy]
 

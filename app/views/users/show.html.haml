@@ -1,12 +1,7 @@
-%a{href: '/items/new', class: "display"}
-  .display__text
-    出品する
-  .display__link
-    = image_tag 'icon_camera.png', class: 'image', width: '70px', height: '70px'
+= render "put-up"
 
 .my-page
-  .my-page__logo
-    = link_to image_tag(src='logo.png', size: "200x55"), root_path
+  = render "header"
 
   .my-page__main
     .my-page__main__left
@@ -14,7 +9,7 @@
       = link_to "マイページ", users_show_path(current_user.id), class: "link select"
       = link_to "プロフィール", root_path, class: "link"
       = link_to "送付先住所情報", root_path, class: "link"
-      = link_to "メール/パスワード", root_path, class: "link"
+      = link_to "メール/パスワード", users_email_path, class: "link"
       = link_to "クレジットカード情報", cards_path, class: "link"
       = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "link"
     .my-page__main__center
@@ -44,6 +39,4 @@
                       削除
               - count = count + 1
 
-  .my-page__logo
-    .last
-      = link_to image_tag(src='logo-white.png', size: "200x55"), root_path
+  = render "footer"
