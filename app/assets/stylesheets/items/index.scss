@@ -318,6 +318,10 @@ a:hover {
         .context {
           background-color: white;
           padding: 10px;
+          .name {
+            width: 220px;
+            word-wrap: break-word;
+          }
           .value {
             font-size: 13px;
             display: flex;
