@@ -44,9 +44,9 @@
               = f.label :都道府県
               %span.field__label__attention 必須
             .field__box
-              = f.text_field :prefecture_id, {placeholder:"例) 北海道"}
-            -# .select-box
-            -#   = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"}, class:"frame"
+              -# = f.text_field :prefecture_id, {placeholder:"例) 北海道"}
+            .select-box
+              = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"}, class:"frame"
           .field
             .field__label
               = f.label :市区町村

@@ -3,15 +3,13 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
   devise_scope :user do
-    # get 'profiles', to: 'users/registrations#new_profiles'
-    # post 'profiles', to: 'users/registrations#create_profiles'
     get 'destinations', to: 'users/registrations#new_destination'
     post 'destinations', to: 'users/registrations#create_destination'
   end
 
-  get 'users/show'
-  get "users/email" => "users#email"
 
+  resources :users, only: [:show]
+  get "users/email" => "users#email"
   resources :cards, only: [:index, :new, :create, :destroy]
 
   root 'items#index'
