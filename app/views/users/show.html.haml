@@ -9,7 +9,7 @@
       = link_to "マイページ", user_path(current_user.id), class: "link select"
       = link_to "プロフィール", root_path, class: "link"
       = link_to "送付先住所情報", root_path, class: "link"
-      = link_to "メール/パスワード", users_email_path, class: "link"
+      = link_to "メール/パスワード", edit_user_path(current_user.id), class: "link"
       = link_to "クレジットカード情報", cards_path, class: "link"
       = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "link"
     .my-page__main__center

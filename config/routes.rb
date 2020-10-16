@@ -8,8 +8,7 @@ Rails.application.routes.draw do
   end
 
 
-  resources :users, only: [:show]
-  get "users/email" => "users#email"
+  resources :users, only: [:show, :edit]
   resources :cards, only: [:index, :new, :create, :destroy]
 
   root 'items#index'
