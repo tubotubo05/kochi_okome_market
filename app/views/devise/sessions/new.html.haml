@@ -23,3 +23,10 @@
           .field
             .actions
               = f.submit "ログイン", class: 'btn'
+            -# .forget
+            -#   = link_to "パスワードをお忘れの方" ,new_user_password_path
+  .new-footer
+    .new-footer__title
+      .last
+        = link_to image_tag(src="logo-white.png", size: "185x49"), root_path
+
