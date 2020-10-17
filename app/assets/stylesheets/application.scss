@@ -5,12 +5,13 @@
 @import "items/new";
 @import "items/create";
 @import "items/show";
+@import "items/card-form";
 @import "cards";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "slick-theme"; 
 @import "slick";
-@import "purchases";
+@import "items/purchases";
 
 .notifications {
   color: white;

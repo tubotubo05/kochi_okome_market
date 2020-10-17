@@ -1,0 +1,56 @@
+.newpage
+  .header-logo
+    = image_tag 'logo.png', height: '50px', width: '185px'
+  .main
+    %h1.item-title 購入内容の確認
+    %section.itemDate
+      .item-box
+        = image_tag @item.item_images[0].image_url.url,height: '120px', width: '120px', class: 'image'
+        .content
+          %p.item-name
+            = @item.name
+          %p.item-price
+            %span (税込)
+            %span.price
+              = (@item.price * 1.1).round
+    %section.price-box
+      %h1.title 支払い金額
+      .icon ¥
+      .price
+        = (@item.price * 1.1).round
+      .enn 円
+    %section.card-box
+      .content
+        .title
+          クレジットカード情報
+        - if @card
+          = @card[:brand]
+          = "************" + @card[:last4]
+          %br
+          有効期限は
+          = @card[:exp_month]
+          \/
+          = @card[:exp_year]
+          です
+          -# %br
+          -# = link_to "削除する", "", method: :delete
+        - else
+          = link_to cardnew_item_path ,class:"card-btn" do
+            = icon('fas','plus')
+            登録してください
+    %section.address-box
+      .box
+        .title-box
+          .title 配送先
+          .change 変更する
+        .date-box
+          .postal 〒781-1101
+          .address 高知県 土佐市 高岡町甲1881-3 マリベールダンク305
+          .name 金村 匡将
+    - if @card
+      = link_to "購入する",purchase_item_path,class:"buy-btn"
+    - else
+      .notice クレジットカードの登録をしてください。
+      .not-btn 購入する
+  .footer-logo
+    =image_tag 'logo-white.png',height: '50px', width: '185px'

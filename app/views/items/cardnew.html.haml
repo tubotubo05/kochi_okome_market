@@ -1,0 +1,26 @@
+.newpage
+  .header-logo
+    = image_tag 'logo.png', height: '50px', width: '185px'
+  .cardmain
+    .title
+      カード情報登録
+    = form_with model: @card, id: "card_form" do |f|
+      .area
+        .field
+          = f.label :card, "カード番号",id:"field-title"
+          = f.text_field :card, required: true, maxlength: 16, id: "card_number_form", placeholder: "1234   5678   1234   5678"
+        .field
+          = f.label :card, "有効期限",id:"field-title"
+          .content
+            = f.select :card, 1..12, {include_blank: "---"}, id: "exp_month_form"
+            = f.label :card, "月",id:"date-title"
+            = f.select :card, [[20, 2020], [21, 2021], [22, 2022], [23, 2023], [24, 2024], [25, 2025]], {include_blank: "---"}, id: "exp_year_form"
+            = f.label :card, "年",id:"date-title"
+        .field
+          = f.label :card, "セキュリティコード",id:"field-title"
+          = f.text_field :card, required: true,  id: "cvc_form", placeholder: "カード背面４桁もしくは３桁の番号"
+        #card_token
+        .regist_button
+          = f.submit "登録する", id: "regist_card"
+  .footer-logo
+    =image_tag 'logo-white.png',height: '50px', width: '185px'

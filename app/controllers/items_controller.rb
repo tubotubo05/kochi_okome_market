@@ -95,6 +95,42 @@ class ItemsController < ApplicationController
     end
   end
 
+  def purchase_confirmation
+    @item = Item.find(params[:id])
+    if current_user.cards != []
+      @card = Card.get_card(current_user.cards[0].customer_token)
+    end
+  end
+
+  def cardnew
+    @card = Card.new
+    @item = Item.find(params[:id])
+  end
+
+  # def cardcreate
+  #   Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
+  #   customer = Payjp::Customer.create(card: params[:payjp_token])
+  #   card = Card.new(customer_token: customer.id, user_id: current_user.id)
+  #   if card.save
+  #     redirect_to purchase_confirmation_item_path(@item)
+  #   else
+  #     redirect_to cardnew_item_path
+  #   end
+  # end
+
+
+  def purchase
+    @item = Item.find(params[:id])
+    Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
+    customer_token = current_user.card.customer_token
+    Payjp::Charge.create(
+      amount: @item.price, # 商品の値段
+      customer: customer_token, # 顧客のトークン
+      currency: 'jpy'  # 通貨の種類
+    )
+    redirect_to item_path(@item)
+  end
+
 
   private
 
@@ -146,6 +182,13 @@ class ItemsController < ApplicationController
     else
       @category_id = params[:item][:category_grandchild]
     end
+  end
+
+  def self.get_card(customer_token)  ## カード情報を取得する
+    Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
+  
+    customer = Payjp::Customer.retrieve(customer_token)
+    card_data = customer.cards.first
   end
 
 
