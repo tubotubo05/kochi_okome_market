@@ -2,7 +2,7 @@
 
 .my-page
   = render "header"
-  
+
   .my-page__main
     .my-page__main__left
       = link_to "トップページ", root_path, class: "link"
@@ -30,6 +30,5 @@
               = f.email_field :email
           .FormButton
             = f.submit "編集", class: 'Button UserButton'
-          
+
   = render "footer"
-  

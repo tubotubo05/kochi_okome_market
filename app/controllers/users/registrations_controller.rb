@@ -48,7 +48,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user = User.new(sign_up_params)
     @user.build_profile(sign_up_params[:profile_attributes])
     unless @user.valid?
-      #binding.pry
       flash.now[:alert] = @user.errors.full_messages
       render :new and return
     end

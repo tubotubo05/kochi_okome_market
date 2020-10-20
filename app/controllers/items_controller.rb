@@ -18,6 +18,12 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    if current_user == nil
+      redirect_to root_path and return
+    end
+    if current_user.id != @item.user_id
+      redirect_to root_path and return
+    end
     @images = @item.item_images
     if @item.brand
       @brand = @item.brand.name
