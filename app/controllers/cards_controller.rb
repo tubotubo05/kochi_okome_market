@@ -13,7 +13,6 @@ class CardsController < ApplicationController
     Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
     customer = Payjp::Customer.create(card: params[:payjp_token])
     card = Card.new(customer_token: customer.id, user_id: current_user.id)
-    # card.save ? (redirect_to request.referer) : (render :new)
     if card.save
       if params[:card][:hidden] =="my_page"
         redirect_to cards_path
