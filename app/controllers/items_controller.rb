@@ -96,8 +96,7 @@ class ItemsController < ApplicationController
   end
 
   def purchase_confirmation
-    @item = Item.find(params[:id])
-    @destination = Destination.where(user_id: current_user.id).first
+    @destination = Destination.find_by(user_id: current_user.id)
     if current_user.cards != []
       @card = Card.get_card(current_user.cards[0].customer_token)
     end
@@ -105,13 +104,11 @@ class ItemsController < ApplicationController
 
   def cardnew
     @card = Card.new
-    @item = Item.find(params[:id])
   end
 
   def purchase
-    @item = Item.find(params[:id])
     Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
-    card = Card.where(user_id: current_user.id).first
+    card = Card.find_by(user_id: current_user.id)
     Payjp::Charge.create(
       amount: @item.price,
       customer: card.customer_token,
