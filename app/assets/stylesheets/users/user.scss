@@ -1,6 +1,6 @@
 body {
-  display: block;
   background: whitesmoke;
+  display: block;
   font-family: 'Source Sans Pro', Helvetica , Arial, 'æ¸¸ã‚´ã‚·ãƒƒã‚¯ä½“', 'YuGothic', 'ãƒ¡ã‚¤ãƒªã‚ª', 'Meiryo', sans-serif;;
   color: #333333;
 }
@@ -37,6 +37,9 @@ body {
       padding: 40px 40px 64px;
     }
 
+    .new_destination {
+      padding-bottom: 50px;
+    }
     .box {
       max-width: 343px;
       margin: 0 auto;

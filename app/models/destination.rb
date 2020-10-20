@@ -6,5 +6,8 @@ class Destination < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
 
+  validates :postal_code, numericality: true, length: { is: 7 }
+  validates :kana_first_name, :kana_last_name, presence: true, format: { with: /\A[\p{Hiragana}\p{blank}ー－]+\z/, message: 'はひらがなで入力して下さい。'}
+
 
 end
