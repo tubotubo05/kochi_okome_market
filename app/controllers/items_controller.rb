@@ -97,6 +97,7 @@ class ItemsController < ApplicationController
 
   def purchase_confirmation
     @item = Item.find(params[:id])
+    @destination = Destination.where(user_id: current_user.id).first
     if current_user.cards != []
       @card = Card.get_card(current_user.cards[0].customer_token)
     end
@@ -107,28 +108,17 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  # def cardcreate
-  #   Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
-  #   customer = Payjp::Customer.create(card: params[:payjp_token])
-  #   card = Card.new(customer_token: customer.id, user_id: current_user.id)
-  #   if card.save
-  #     redirect_to purchase_confirmation_item_path(@item)
-  #   else
-  #     redirect_to cardnew_item_path
-  #   end
-  # end
-
-
   def purchase
     @item = Item.find(params[:id])
     Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
-    customer_token = current_user.card.customer_token
+    card = Card.where(user_id: current_user.id).first
     Payjp::Charge.create(
-      amount: @item.price, # 商品の値段
-      customer: customer_token, # 顧客のトークン
-      currency: 'jpy'  # 通貨の種類
+      amount: @item.price,
+      customer: card.customer_token,
+      currency: 'jpy'
     )
-    redirect_to item_path(@item)
+    @item.update( buyer_id: current_user.id)
+    redirect_to purchased_item_path
   end
 
 

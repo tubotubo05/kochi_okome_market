@@ -290,6 +290,7 @@ a:hover {
       display: flex;
       justify-content: center;
       align-items: center;
+      height: 234px;
       a{
         text-decoration: none;
         color: black;
@@ -304,7 +305,7 @@ a:hover {
             border-left: 60px solid #3CCACE ;
             z-index:100;
             position: relative;
-            top:-156px;
+            top:-154px;
             &__inner{
               transform: rotate(-45deg);
               font-size: 26px;
@@ -319,11 +320,12 @@ a:hover {
           background-color: white;
           padding: 10px;
           .name {
-            width: 220px;
+            width: 200px;
             word-wrap: break-word;
+            font-size: 20px;
           }
-          .value {
-            font-size: 13px;
+          .value{
+            font-size: 16px;
             display: flex;
             justify-content: space-between;
             align-items: center;

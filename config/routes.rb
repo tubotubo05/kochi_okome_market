@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       get "purchase_confirmation"
       post "purchase"
       get "cardnew"
+      get 'purchased'
     end
   end
 

@@ -5,6 +5,8 @@
     .title
       カード情報登録
     = form_with model: @card, id: "card_form" do |f|
+      = f.hidden_field :hidden, :value => "purchase"
+      = f.hidden_field :item_id, :value => @item.id
       .area
         .field
           = f.label :card, "カード番号",id:"field-title"
