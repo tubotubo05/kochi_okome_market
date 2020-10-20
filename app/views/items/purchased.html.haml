@@ -1,6 +1,7 @@
 .newpage
   .header-logo
-    = image_tag 'logo.png', height: '50px', width: '185px'
+    = link_to root_path do
+      = image_tag 'logo.png', height: '50px', width: '185px'
   .done-main
     .done-main__contents
       %h1.donetitle 購入が完了しました

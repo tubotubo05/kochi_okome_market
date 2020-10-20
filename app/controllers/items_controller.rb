@@ -96,10 +96,15 @@ class ItemsController < ApplicationController
   end
 
   def purchase_confirmation
-    @destination = Destination.find_by(user_id: current_user.id)
-    if current_user.cards != []
-      @card = Card.get_card(current_user.cards[0].customer_token)
+    if user_signed_in? 
+      @destination = Destination.find_by(user_id: current_user.id)
+      if current_user.cards != []
+        @card = Card.get_card(current_user.cards[0].customer_token)
+      end
+    else
+      redirect_to  new_user_session_path
     end
+  
   end
 
   def cardnew
