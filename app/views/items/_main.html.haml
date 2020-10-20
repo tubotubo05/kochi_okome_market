@@ -104,7 +104,8 @@
                   = (item.price * 1.1).round
                   円
                 .evaluation
-                  ⭐️1
+                  ⭐️
+                  = item.liked_users.count
               .tax
                 (税込)
   - if @ladies.length != 0
@@ -128,7 +129,8 @@
                   = (item.price * 1.1).round
                   円
                 .evaluation
-                  ⭐️1
+                  ⭐️
+                  = item.liked_users.count
               .tax
                 (税込)
   - if @mens.length != 0
@@ -152,7 +154,8 @@
                   = (item.price * 1.1).round
                   円
                 .evaluation
-                  ⭐️1
+                  ⭐️
+                  = item.liked_users.count
               .tax
                 (税込)
   - if @home_appliances.length != 0
@@ -176,7 +179,8 @@
                   = (item.price * 1.1).round
                   円
                 .evaluation
-                  ⭐️1
+                  ⭐️
+                  = item.liked_users.count
               .tax
                 (税込)
   - if @book.length != 0
@@ -200,6 +204,7 @@
                   = (item.price * 1.1).round
                   円
                 .evaluation
-                  ⭐️1
+                  ⭐️
+                  = item.liked_users.count
               .tax
                 (税込)

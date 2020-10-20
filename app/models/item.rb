@@ -4,6 +4,8 @@ class Item < ApplicationRecord
   belongs_to :user
   belongs_to :category
   belongs_to :brand, optional: true
+  has_many :likes
+  has_many :liked_users, through: :likes, source: :user
   has_many :comments, dependent: :destroy
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture

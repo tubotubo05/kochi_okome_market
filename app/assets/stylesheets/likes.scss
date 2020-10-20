@@ -1,0 +1,39 @@
+.likes-main{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 50px;
+  border-top: 1px solid #EEEEEE;
+  a{
+    width: 100%;
+    .like{
+      width: 100%;
+      border-bottom: 1px solid #EEEEEE;
+      padding: 15px 30px;
+      display: flex;
+      align-items: center;
+      .content{
+        color: #333333;
+        margin-left: 50px;
+        font-size: 20px;
+        .name{
+          margin-bottom: 10px;
+        }
+      }
+    }
+    &:hover{
+      background-color: #EEEEEE;
+    }
+  }
+}
+.notlike{
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  margin-top: 150px;
+  .content{
+    color: #CCCCCC;
+    font-size: 30px;
+  }
+}

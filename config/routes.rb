@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   root 'items#index'
   resources :items do
     resources :comments,only:[:new,:create,:destroy]
+    resources :likes, only: [:index,:create, :destroy]
     member do
       get "purchase_confirmation"
       post "purchase"
