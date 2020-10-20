@@ -1,3 +1,7 @@
+.notifications
+  - flash.each do |key, value|
+    = content_tag(:div, value, class: key)
+
 .page
   .logo
     = link_to image_tag(src='logo.png', size: "200x55"), root_path
