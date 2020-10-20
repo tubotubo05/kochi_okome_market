@@ -1,0 +1,91 @@
+.newpage{
+  .card-main{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    .card-content{
+      background-color: #ffffff;
+      height: 600px;
+      width: 700px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .title{
+        padding-top: 30px;
+        height: 80px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #222222;
+      }
+      #card_form{
+        width: 400px;
+        display: flex;
+        justify-content: center;
+        .area{
+          width: 100%;
+          .field{
+            margin-top: 30px;
+            #field-title{
+              font-size: 17px;
+              font-weight: bold;
+              margin-bottom:10px ;
+              display: block;
+              color: #333333;
+            }
+            #card_number_form{
+              display: block;
+              height: 45px;
+              width: 400px;
+              font-size: 20px;
+              padding-left: 15px;
+              border: 1px solid #ccc ;
+              border-radius: 4px;
+            }
+            .content{
+              #date-title{
+                font-size: 16px;
+                margin-left: 17px;
+              }
+              #exp_month_form{
+                height: 45px;
+                width: 150px;
+                border: 1px solid #ccc ;
+                border-radius: 4px;
+              }
+              #exp_year_form{
+                height: 45px;
+                width: 150px;
+                border: 1px solid #ccc ;
+                border-radius: 4px;
+                margin-left: 17px;
+              }
+            }
+            #cvc_form{
+              display: block;
+              height: 45px;
+              width: 400px;
+              font-size: 20px;
+              padding-left: 15px;
+              border: 1px solid #ccc ;
+              font-size: 20px;
+              border-radius: 4px;
+            }
+          }
+          .regist_button{
+            margin-top: 80px;
+            #regist_card{
+              height: 45px;
+              width: 400px;
+              font-size: 20px;
+              font-weight: 530;
+              border-radius: 4px;
+              background-color: #3CCACE;
+              border: none;
+              color: #ffffff;
+            }
+          }
+        }
+      }
+    }
+  }
+}

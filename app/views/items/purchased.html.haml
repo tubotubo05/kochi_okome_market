@@ -1,0 +1,11 @@
+.newpage
+  .header-logo
+    = image_tag 'logo.png', height: '50px', width: '185px'
+  .done-main
+    .done-main__contents
+      %h1.donetitle 購入が完了しました
+      .done-contents
+        .notice  ご購入ありがとうございます。
+        = link_to "トップページに戻る",root_path,class:"top-btn"
+  .footer-main
+    =image_tag 'logo-white.png',height: '50px', width: '185px',class:"footer-logo"

@@ -10,6 +10,7 @@
       .title
         カード情報登録
       = form_with model: @card, id: "card_form" do |f|
+        = f.hidden_field :hidden, :value => "my_page"
         .area
           .field
             = f.label :card, "カード番号"

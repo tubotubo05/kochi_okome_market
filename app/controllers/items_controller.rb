@@ -9,8 +9,6 @@ class ItemsController < ApplicationController
     @home_appliances = Item.where(category_id: 8).or(Item.where(category_id: 897..982)).order('created_at DESC').limit(6)
   end
 
-  def confirm
-  end
 
   def show
     @comment =Comment.new
@@ -97,6 +95,29 @@ class ItemsController < ApplicationController
     end
   end
 
+  def purchase_confirmation
+    @destination = Destination.find_by(user_id: current_user.id)
+    if current_user.cards != []
+      @card = Card.get_card(current_user.cards[0].customer_token)
+    end
+  end
+
+  def cardnew
+    @card = Card.new
+  end
+
+  def purchase
+    Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
+    card = Card.find_by(user_id: current_user.id)
+    Payjp::Charge.create(
+      amount: @item.price,
+      customer: card.customer_token,
+      currency: 'jpy'
+    )
+    @item.update( buyer_id: current_user.id)
+    redirect_to purchased_item_path
+  end
+
 
   private
 
@@ -148,6 +169,13 @@ class ItemsController < ApplicationController
     else
       @category_id = params[:item][:category_grandchild]
     end
+  end
+
+  def self.get_card(customer_token)  ## カード情報を取得する
+    Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
+  
+    customer = Payjp::Customer.retrieve(customer_token)
+    card_data = customer.cards.first
   end
 
 

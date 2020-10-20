@@ -13,14 +13,18 @@ class CardsController < ApplicationController
     Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
     customer = Payjp::Customer.create(card: params[:payjp_token])
     card = Card.new(customer_token: customer.id, user_id: current_user.id)
-    #card.save ? (redirect_to :back) : (render :new)
     if card.save
-      redirect_to cards_path
-      #redirect_to request.referer
+      if params[:card][:hidden] =="my_page"
+        redirect_to cards_path
+      else
+        redirect_to purchase_confirmation_item_path(params[:card][:item_id])
+      end
     else
       redirect_to new_card_path
     end
   end
+
+
 
   def destroy
     card = current_user.cards[0]

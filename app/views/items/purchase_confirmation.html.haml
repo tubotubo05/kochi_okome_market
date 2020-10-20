@@ -1,0 +1,81 @@
+.newpage
+  .header-logo
+    = image_tag 'logo.png', height: '50px', width: '185px'
+  - if @item.buyer_id.present?
+    .buy-main
+      .buy-contents
+        %h1.nottitle 売り切れました
+        .buy-contents__content
+          .notice  この商品は売り切れなので買うことができません。
+          = link_to "トップページに戻る",root_path,class:"top-btn"
+  - elsif @item.user_id == current_user.id
+    .bad-main
+      .bad-contents
+        %h1.nottitle 購入できません
+        .bad-contents__content
+          .notice  自分で出品した商品を自分で買うことはできません。
+          = link_to "トップページに戻る",root_path,class:"top-btn"
+  - else
+    .middle
+      .main
+        %h1.item-title 購入内容の確認
+        %section.itemDate
+          .item-box
+            = image_tag @item.item_images[0].image_url.url,height: '120px', width: '120px', class: 'image'
+            .content
+              %p.item-name
+                = @item.name
+              %p.item-price
+                %span.icon (税込)
+                %span.price
+                  = (@item.price * 1.1).round
+                %span.enn 円
+        %section.price-box
+          %h1.title 支払い金額
+          .icon ¥
+          .price
+            = (@item.price * 1.1).round
+          .enn 円
+        %section.card-box
+          .content
+            .title
+              クレジットカード情報
+            - if @card
+              = @card[:brand]
+              = "************" + @card[:last4]
+              %br
+              有効期限は
+              = @card[:exp_month]
+              \/
+              = @card[:exp_year]
+              です
+            - else
+              = link_to cardnew_item_path ,class:"card-btn" do
+                = icon('fas','plus')
+                登録してください
+        %section.address-box
+          .box
+            .title-box
+              .title 配送先
+              .change
+            .date-box
+              .postal 
+                〒
+                = @destination.postal_code.to_s.insert(3, "-")
+              .address 
+                = @destination.prefecture.name
+                = @destination.city
+                = @destination.address
+              - if @destination.additional_information.present?
+                = @destination.additional_information
+              .name
+                = @destination.first_name
+                = @destination.last_name
+        - if @card
+          = link_to purchase_item_path,method: :post,class:"buy-btn" do
+            購入する
+        - else
+          .notice クレジットカードの登録をしてください。
+          .not-btn 購入する
+  .footer-main
+    =image_tag 'logo-white.png',height: '50px', width: '185px',class:"footer-logo"

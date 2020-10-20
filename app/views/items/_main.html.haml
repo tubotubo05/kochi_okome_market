@@ -86,25 +86,27 @@
       ピックアップカテゴリー
     .pickup-category__link
       = link_to "新規投稿商品", root_path, class: "link"
-    .pickup-category__items
-      - @items.each do |item|
-        = link_to item_path(item.id) do
-          .image
-            = image_tag item.item_images[0].image_url.url, class: 'image-tag', width: '220px', height: '150px'
-            -if item.buyer_id.present?
-              .sold
-                .sold__inner
-                  SOLD
-          .context
-            .name
-              = item.name
-            .value
+    - if @items.length != 0
+      .pickup-category__items
+        - @items.each do |item|
+          = link_to item_path(item.id) do
+            .image
+              = image_tag item.item_images[0].image_url.url, class: 'image-tag', width: '220px', height: '150px'
+              -if item.buyer_id.present?
+                .sold
+                  .sold__inner
+                    SOLD
+            .context
+              .name
+                = item.name
               .value
-                = (item.price * 1.1).round
-              .evaluation
-                ⭐️1
-            .tax
-              (税込)
+                .value
+                  = (item.price * 1.1).round
+                  円
+                .evaluation
+                  ⭐️1
+              .tax
+                (税込)
   - if @ladies.length != 0
     .pickup-category
       .pickup-category__title
@@ -124,6 +126,7 @@
               .value
                 .value
                   = (item.price * 1.1).round
+                  円
                 .evaluation
                   ⭐️1
               .tax
@@ -147,6 +150,7 @@
               .value
                 .value
                   = (item.price * 1.1).round
+                  円
                 .evaluation
                   ⭐️1
               .tax
@@ -170,6 +174,7 @@
               .value
                 .value
                   = (item.price * 1.1).round
+                  円
                 .evaluation
                   ⭐️1
               .tax
@@ -193,6 +198,7 @@
               .value
                 .value
                   = (item.price * 1.1).round
+                  円
                 .evaluation
                   ⭐️1
               .tax

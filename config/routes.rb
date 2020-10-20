@@ -14,10 +14,13 @@ Rails.application.routes.draw do
   root 'items#index'
   resources :items do
     resources :comments,only:[:new,:create,:destroy]
+    member do
+      get "purchase_confirmation"
+      post "purchase"
+      get "cardnew"
+      get 'purchased'
+    end
   end
-  post "items/confirm" => "items#confirm"
-
-  resources :purchases,only:[:index]
 
   namespace :api do
     resources :categories, only: [:index, :new], defaults: { format: 'json' }
