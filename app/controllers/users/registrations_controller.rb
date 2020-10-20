@@ -13,6 +13,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @profile = @user.build_profile
   end
 
+  def new_destination
+    redirect_to root_path
+  end
+
 
   # POST /resource
   # def create
@@ -44,6 +48,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user = User.new(sign_up_params)
     @user.build_profile(sign_up_params[:profile_attributes])
     unless @user.valid?
+      #binding.pry
       flash.now[:alert] = @user.errors.full_messages
       render :new and return
     end
@@ -51,7 +56,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     session["devise.regist_data"][:user]["password"] = params[:user][:password]
     session[:profile_attributes] = sign_up_params[:profile_attributes]
     @destination = @user.destinations.build
-    # binding.pry
     render :new_destination
   end
 
@@ -69,7 +73,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     session["devise.regist_data"]["user"].clear
     session[:profile_attributes].clear
     sign_in(:user, @user)
-
   end
 
   # GET /resource/edit
