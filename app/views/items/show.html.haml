@@ -64,22 +64,30 @@
       -else
         =link_to "購入画面に進む",purchase_confirmation_item_path,class:"buy-btn"
     .option-box
-      - if current_user.already_liked?(@item)
-        = link_to item_like_path(@item),method: :delete  do
-          %ul
-            %li.delike-btn
-              .icon
-                =icon('fa','star')
-              お気に入り
-              = @item.liked_users.count
+      - if user_signed_in?
+        - if current_user.already_liked?(@item)
+          = link_to item_like_path(@item),method: :delete  do
+            %ul
+              %li.delike-btn
+                .icon
+                  =icon('fa','star')
+                お気に入り
+                = @item.liked_users.count
+        - else
+          = link_to item_likes_path(@item),method: :post  do
+            %ul
+              %li.like-btn
+                .icon
+                  =icon('far','star')
+                お気に入り
+                = @item.liked_users.count
       - else
-        = link_to item_likes_path(@item),method: :post  do
-          %ul
-            %li.like-btn
-              .icon
-                =icon('far','star')
-              お気に入り
-              = @item.liked_users.count
+        %ul
+          %li.like-btn
+            .icon
+              =icon('far','star')
+            お気に入り
+            = @item.liked_users.count
       %ul
         %li.option-btn
           = link_to "#" do
