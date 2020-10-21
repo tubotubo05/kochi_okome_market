@@ -1,11 +1,11 @@
-= render "put-up"
+= render "users/put-up"
     
 .card
-  = render "header"
+  = render "users/header"
 
   .card__main
     .card__main__left
-      = render "link"
+      = render "users/link"
     .card__main__right
       .title
         カード情報
@@ -27,7 +27,7 @@
           = link_to new_card_path, class: "new" do
             クレジットカード登録
 
-  = render "footer"
+  = render "users/footer"
 
 
 

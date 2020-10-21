@@ -1,11 +1,11 @@
-= render "put-up"
+= render "users/put-up"
 
 .card
-  = render "header"
+  = render "users/header"
 
   .card__main
     .card__main__left
-      = render "link"
+      = render "users/link"
     .card__main__right
       .title
         カード情報登録
@@ -26,4 +26,4 @@
           .regist_button
             = f.submit "登録", id: "regist_card"
 
-  = render "footer"
+  = render "users/footer"
