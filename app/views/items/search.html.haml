@@ -1,15 +1,38 @@
 = render 'header'
 
-.search-right
-  %section.items-box-container
-    -if @items.present?
-      %h2.search-result-head
-        =@items[0].name
-        %span.search-result-head-text
-          の検索結果
-      .search-result-number
-        ="1-#{@items.count}件表示"
-    -else
-      %h2.search-result-nil
-        新着商品
-    .items-box-content
+.main 
+  .search
+    %span.search__title
+      の検索結果
+    .search__number
+      ="1-#{@items.count}件表示"
+
+    .search__link
+      = link_to "新規投稿商品", root_path, class: "link"
+    .serch-items
+    %ul - @items.each do |item|
+      %li
+        = item.created_at
+        = item.status
+    -# - if @items.length != 0
+    -#   %ul.pickup-category__items
+    -#     - @items.each do |item|
+    -#       = link_to item_path(item.id) do
+    -#         %li.image
+    -#           = image_tag item.item_images[0].image_url.url, class: 'image-tag', width: '220px', height: '150px'
+    -#           -if item.buyer_id.present?
+    -#             .sold
+    -#               .sold__inner
+    -#                 SOLD
+    -#         .context
+    -#           .name
+    -#             = item.name
+    -#           .value
+    -#             .value
+    -#               = (item.price * 1.1).round
+    -#               円
+    -#             .evaluation
+    -#               ⭐️1
+    -#           .tax
+    -#             (税込)
+
