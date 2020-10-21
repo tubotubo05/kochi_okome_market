@@ -29,31 +29,37 @@ class ItemsController < ApplicationController
   end
 
   def update
-    
-    addBrand()
-    createCategoryId()
-    changeBrandId()
-    if !@item.update(item_params)
-      message = '入力必須項目に入力してください'
-      if params[:item][:price].to_i < 300
-        message = '金額は1以上を入力してください'
-      elsif params[:item][:price].to_i >= 10000000
-        message = '金額は99,999,999以下を入力してください'
+    if @item.user_id == current_user.id
+      addBrand()
+      createCategoryId()
+      changeBrandId()
+      if !@item.update(item_params)
+        message = '入力必須項目に入力してください'
+        if params[:item][:price].to_i < 300
+          message = '金額は1以上を入力してください'
+        elsif params[:item][:price].to_i >= 10000000
+          message = '金額は99,999,999以下を入力してください'
+        end
+        if params[:item][:name].length > 40
+          message = '商品名は40文字以内で入力してください'
+        end
+        redirect_to edit_item_path(params[:id]), flash: {error: message}
+      else
+        redirect_to item_path(params[:id])
       end
-      if params[:item][:name].length > 40
-        message = '商品名は40文字以内で入力してください'
-      end
-      redirect_to edit_item_path(params[:id]), flash: {error: message}
     else
-      redirect_to item_path(params[:id])
+      redirect_to root_path
     end
   end
 
   def destroy
-    @item = Item.find(params[:id]).destroy
-    respond_to do |format|
-      format.html {redirect_to user_path(current_user.id)}
-      format.json
+    item = Item.find(params[:id])
+    if item.user_id == current_user.id
+      @item = item.destroy
+      respond_to do |format|
+        format.html {redirect_to user_path(current_user.id)}
+        format.json
+      end
     end
   end
 
@@ -105,7 +111,6 @@ class ItemsController < ApplicationController
     else
       redirect_to  new_user_session_path
     end
-  
   end
 
   def cardnew
@@ -113,15 +118,19 @@ class ItemsController < ApplicationController
   end
 
   def purchase
-    Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
-    card = Card.find_by(user_id: current_user.id)
-    Payjp::Charge.create(
-      amount: @item.price,
-      customer: card.customer_token,
-      currency: 'jpy'
-    )
-    @item.update( buyer_id: current_user.id)
-    redirect_to purchased_item_path
+    if @item.user_id != current_user.id
+      if @item.buyer_id == nil
+        Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
+        card = Card.find_by(user_id: current_user.id)
+        Payjp::Charge.create(
+          amount: @item.price,
+          customer: card.customer_token,
+          currency: 'jpy'
+        )
+        @item.update( buyer_id: current_user.id)
+        redirect_to purchased_item_path
+      end
+    end
   end
 
 
@@ -177,7 +186,7 @@ class ItemsController < ApplicationController
     end
   end
 
-  def self.get_card(customer_token)  ## カード情報を取得する
+  def self.get_card(customer_token)
     Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
   
     customer = Payjp::Customer.retrieve(customer_token)
