@@ -7,7 +7,7 @@
       .main__title
         会員情報入力
       = form_for(@user, url: user_registration_path) do |f|
-        = render "devise/shared/error_messages", resource: @user
+        = devise_error_messages!
         .box
           .field
             .field__label
