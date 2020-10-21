@@ -1,4 +1,4 @@
-.newpage{
+.newpage, .notpage{
   height: 100vh;
   width: 100vw;
   background-color: #FFF0F5;
@@ -9,13 +9,13 @@
     justify-content: center;
     align-items: center;
   }
-  .buy-main{
+  .buy-main, .not-main{
     height: 600px;
     width: 100vw;
     background-color: #FFF0F5;
     display: flex;
     justify-content: center;
-    .buy-contents{
+    .buy-contents, .not-contents{
       height: 250px;
       width: 700px;
       background-color: #ffffff;

@@ -2,118 +2,128 @@
   - flash.each do |key, value|
     = content_tag(:div, value, class: key)
 
-.page
-  .logo
-    = link_to image_tag(src='logo.png', size: "200x55"), root_path
+- if current_user == nil
+  .notpage
+    .header-logo
+      = link_to image_tag(src='logo.png', size: "200x55"), root_path
+    .not-main
+      .not-contents
+        %h1.nottitle 出品できません
+        .not-contents__content
+          .notice  出品するためにはログインする必要があります。
+          = link_to "トップページに戻る",root_path,class:"top-btn"
+- else
+  .page
+    .logo
+      = link_to image_tag(src='logo.png', size: "200x55"), root_path
+    .main
+      = form_with model: @item, class: :main__form, local: true do |f|
+        .top
+          .top__image
+            .top__image__title
+              .top__image__title__left
+                出品画像
+              .top__image__title__right
+                必須
+            .top__image__text
+              最大5枚までアップロードできます
+            .top__image__upload
+              .previews
+                - if @item.persisted?
+                  = @item.images.each_with_index do |image, i|
+                    = image_tag image.src.url, data: { index: i }, width: "100", height: '100'
+              .area
+                - count = 0
+                = f.fields_for :item_images do |i|
+                  - count = count + 1
+                  -if count == 1
+                    .field
+                      .file{"data-index": 0}
+                        = i.file_field :image_url, id:"img-file", class: "file__image"
+                        %label{for: "img-file0", class: 'label'}
+                          %i.fas.fa-camera.icon
 
-  .main
-    = form_with model: @item, class: :main__form, local: true do |f|
-      .top
-        .top__image
-          .top__image__title
-            .top__image__title__left
-              出品画像
-            .top__image__title__right
-              必須
-          .top__image__text
-            最大5枚までアップロードできます
-          .top__image__upload
-            .previews
-              - if @item.persisted?
-                = @item.images.each_with_index do |image, i|
-                  = image_tag image.src.url, data: { index: i }, width: "100", height: '100'
-            .area
-              - count = 0
-              = f.fields_for :item_images do |i|
-                - count = count + 1
-                -if count == 1
-                  .field
-                    .file{"data-index": 0}
-                      = i.file_field :image_url, id:"img-file", class: "file__image"
-                      %label{for: "img-file0", class: 'label'}
-                        %i.fas.fa-camera.icon
+          .top__name
+            .top__name__title
+              .top__name__title__left
+                商品名
+              .top__name__title__right
+                必須
+            .top__name__form
+              = f.text_field :name, class: 'top__name__form__field', placeholder: '40文字まで'
+          .top__description
+            .top__description__title
+              .top__description__title__left
+                商品の説明
+              .top__description__title__right
+                必須
+            .top__description__form
+              = f.text_area :description, class: 'top__description__form__field field-area', placeholder: '説明を入れてください&#13;&#10;&#13;&#10;例)　祖母からもらったペンダントです'.html_safe
 
-        .top__name
-          .top__name__title
-            .top__name__title__left
-              商品名
-            .top__name__title__right
-              必須
-          .top__name__form
-            = f.text_field :name, class: 'top__name__form__field', placeholder: '40文字まで'
-        .top__description
-          .top__description__title
-            .top__description__title__left
-              商品の説明
-            .top__description__title__right
-              必須
-          .top__description__form
-            = f.text_area :description, class: 'top__description__form__field field-area', placeholder: '説明を入れてください&#13;&#10;&#13;&#10;例)　祖母からもらったペンダントです'.html_safe
+        .detail
+          .detail__category
+            .detail__category__title
+              .detail__category__title__left
+                カテゴリー
+              .detail__category__title__right
+                必須
+            .detail__category__form
+              = f.collection_select :category_id, Category.where(ancestry: nil), :id, :name, {prompt: "選択してください", selected: @item.category_id}, required: true, class: "select select-category parent", id: "#{@item.category_id}", data: { ancestry: "#{@ancestry}" }
+          .detail__brand
+            .detail__brand__title
+              .detail__brand__title__left
+                ブランド
+              .detail__brand__title__right.optional
+                任意
+            .detail__brand__form
+              = f.text_field :brand, class: 'detail__brand__form__field', placeholder: '例)　メルエム', value: @brand_id
+          .detail__condition
+            .detail__condition__title
+              .detail__condition__title__left
+                商品の状態
+              .detail__condition__title__right
+                必須
+            .detail__condition__form
+              = f.collection_select :condition_id, Condition.all, :id, :condition, {prompt: "選択してください", selected: @item.condition_id}, required: true, class: "select"
 
-      .detail
-        .detail__category
-          .detail__category__title
-            .detail__category__title__left
-              カテゴリー
-            .detail__category__title__right
-              必須
-          .detail__category__form
-            = f.collection_select :category_id, Category.where(ancestry: nil), :id, :name, {prompt: "選択してください", selected: @item.category_id}, required: true, class: "select select-category parent", id: "#{@item.category_id}", data: { ancestry: "#{@ancestry}" }
-        .detail__brand
-          .detail__brand__title
-            .detail__brand__title__left
-              ブランド
-            .detail__brand__title__right.optional
-              任意
-          .detail__brand__form
-            = f.text_field :brand, class: 'detail__brand__form__field', placeholder: '例)　メルエム', value: @brand_id
-        .detail__condition
-          .detail__condition__title
-            .detail__condition__title__left
-              商品の状態
-            .detail__condition__title__right
-              必須
-          .detail__condition__form
-            = f.collection_select :condition_id, Condition.all, :id, :condition, {prompt: "選択してください", selected: @item.condition_id}, required: true, class: "select"
+        .shipping
+          .shipping__pay
+            .shipping__pay__title
+              .shipping__pay__title__left
+                配送料の負担
+              .shipping__pay__title__right
+                必須
+            .shipping__pay__form
+              = f.collection_select :shipping_id, Shipping.all, :id, :shipping, {prompt: "選択してください", selected: @item.shipping_id}, required: true, class: "select"
+          .shipping__prefecture
+            .shipping__prefecture__title
+              .shipping__prefecture__title__left
+                発送元の地域
+              .shipping__prefecture__title__right
+                必須
+            .shipping__prefecture__form
+              = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください", selected: @item.prefecture_id}, required: true, class: "select"
+          .shipping__day
+            .shipping__day__title
+              .shipping__day__title__left
+                発送までの日数
+              .shipping__day__title__right
+                必須
+            .shipping__day__form
+              = f.collection_select :shipping_day_id, ShippingDay.all, :id, :shipping_day, {prompt: "選択してください", selected: @item.shipping_day_id}, required: true, class: "select"
 
-      .shipping
-        .shipping__pay
-          .shipping__pay__title
-            .shipping__pay__title__left
-              配送料の負担
-            .shipping__pay__title__right
+        .price
+          .price__title
+            .price__title__left
+              販売価格
+            .price__title__right
               必須
-          .shipping__pay__form
-            = f.collection_select :shipping_id, Shipping.all, :id, :shipping, {prompt: "選択してください", selected: @item.shipping_id}, required: true, class: "select"
-        .shipping__prefecture
-          .shipping__prefecture__title
-            .shipping__prefecture__title__left
-              発送元の地域
-            .shipping__prefecture__title__right
-              必須
-          .shipping__prefecture__form
-            = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください", selected: @item.prefecture_id}, required: true, class: "select"
-        .shipping__day
-          .shipping__day__title
-            .shipping__day__title__left
-              発送までの日数
-            .shipping__day__title__right
-              必須
-          .shipping__day__form
-            = f.collection_select :shipping_day_id, ShippingDay.all, :id, :shipping_day, {prompt: "選択してください", selected: @item.shipping_day_id}, required: true, class: "select"
+          .price__form
+            = f.number_field :price, class: 'price__form__field', placeholder: '300~9,999,999を入力してください'
 
-      .price
-        .price__title
-          .price__title__left
-            販売価格
-          .price__title__right
-            必須
-        .price__form
-          = f.number_field :price, class: 'price__form__field', placeholder: '300~9,999,999を入力してください'
+        .button
+          = f.submit '出品する', class: 'button__put-up'
 
-      .button
-        = f.submit '出品する', class: 'button__put-up'
-
-  .logo.last
-    .last__area
-      = link_to image_tag(src='logo-white.png', size: "200x55"), root_path
+    .logo.last
+      .last__area
+        = link_to image_tag(src='logo-white.png', size: "200x55"), root_path
