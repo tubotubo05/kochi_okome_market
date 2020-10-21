@@ -33,5 +33,6 @@ class Item < ApplicationRecord
       errors.add(:item_images, "画像は５枚まで添付可能です")
     end
   end
-  
+
+
 end
