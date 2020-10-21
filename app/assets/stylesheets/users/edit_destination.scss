@@ -1,0 +1,188 @@
+.my-page {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(245, 245, 245);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &__logo {
+    padding: 30px 0px 20px 0px;
+    .last {
+      width: 210px;
+      background-color: black;
+      text-align: center;
+      border-radius: 5px;
+    }
+  }
+
+  &__main {
+    display: flex;
+    &__left {
+      width: 230px;
+      height: 360px;
+      background-color: #3CCACE;
+      margin-right: 50px;
+      .link {
+        color: white;
+        text-decoration: none;
+        border-bottom: solid;
+        border-width: thin;
+        border-color: rgb(245, 245, 245);
+        padding: 10px 0px 10px 20px;
+        display: block;
+        cursor:pointer;
+      }
+      .select {
+        background-color: #91CACE;
+      }
+    }
+    &__center {
+      width: 700px;
+      height: 70vh;
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .title {
+        width: 250px;
+        font-size: 30px;
+        font-weight: bold;
+        color: white;
+        text-align: center;
+        background-color: #3CCACE;
+        margin: 5px 0px 15px 0px;
+      }
+      .items {
+        width: 700px;
+        overflow-y: scroll;
+        display: flex;
+        justify-content: center;
+        .empty {
+          font-size: 30px;
+          text-align: center;
+          padding-top: 100px;
+        }
+        .item {
+          display: flex;
+          flex-wrap: wrap;
+          .area {
+            font-size: 20px;
+            border-color: black;
+            margin: 10px 10px 10px 10px;
+            position: relative;
+            .image {
+              z-index: 1;
+              .img {
+                border: solid;
+                border-color: black;
+                border-radius: 100px;
+              }
+            }
+            .name {
+              color: white;
+              background-color: #3CCACE;
+              opacity:0.8;
+              padding: 5px 10px;
+              position: absolute;
+              left: 0px;
+              top: 0px;
+              z-index: 3;
+            }
+            .sold-out {
+              color: red;
+              font-size: 25px;
+              font-weight: bold;
+              transform: rotate(-20deg);
+              background-color: #eeeeee;
+              opacity: 0.8;
+              border-radius: 5px;
+              padding: 0px 5px;
+              position: absolute;
+              left: 15px;
+              top: 80px;
+              z-index: 2;
+            }
+            .button {
+              width: 70px;
+              border-radius: 5px;
+              background-color: #3CCACE;
+              padding: 5px;
+              display: flex;
+              justify-content: center;
+              position: absolute;
+              right: 5px;
+              bottom: 10px;
+              z-index: 2;
+              cursor:pointer;
+              .delete {
+                color: white;
+                font-weight: bold;
+                text-decoration: none;
+              }
+            }
+          }
+        }
+      }
+      .destination_form {
+        font-size: 18px;
+        padding: 30px 50px 50px 50px;
+        .FormField {
+          padding-bottom: 10px;
+          display: flex;
+          &__label_NAME {
+            padding-right: 113px;
+          }
+          &__label_KANA {
+            padding-right: 77px;
+          }
+          &__input_NAME {
+            display: flex;
+            .half {
+              width: 150px;
+              margin-right: 3px;
+            }
+          }
+          &__input_KANA {
+            display: flex;
+            .half {
+              width: 150px;
+              margin-right: 3px;
+            }
+          }
+          &__label_post {
+            padding-right: 145px;
+          }
+          &__input_post {
+            .post {
+              width: 90px;
+            }
+          }
+          &__label_pre {
+            padding-right: 145px;
+          }
+          &__label_city {
+            padding-right: 145px;
+          }
+          &__label_address {
+            padding-right: 182px;
+          }
+          &__label_add {
+            padding-right: 20px;
+          }
+          &__label_phone {
+            padding-right: 146px;
+          }
+        }
+        .FormButton {
+          font-size: 20px;
+          margin-top: 10px;
+          display: flex;
+          justify-content: center;
+          .Button {
+            padding: 0px 7px;
+          }
+        }
+      }
+    }
+  }
+}

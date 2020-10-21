@@ -19,7 +19,7 @@ class ProfilesController < ApplicationController
     if params[:profile][:"birthday(3i)"].length == 1
       params[:profile][:"birthday(3i)"] = "0" + params[:profile][:"birthday(3i)"]
     end
-    birth = params[:profile][:"birthday(1i)"] + params[:profile][:"birthday(2i)"] + params[:profile][:"birthday(3i)"]
+    birth = params[:profile][:"birthday(1i)"] + "-" + params[:profile][:"birthday(2i)"] + "-" + params[:profile][:"birthday(3i)"]
     params.require(:profile).permit(:first_name, :last_name, :kana_first_name, :kana_last_name).merge(birthday: birth)
   end
 

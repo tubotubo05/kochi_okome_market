@@ -1,0 +1,67 @@
+= render "users/put-up"
+
+.my-page
+  = render "users/header"
+  
+  .my-page__main
+    .my-page__main__left
+      = link_to "トップページ", root_path, class: "link"
+      = link_to "マイページ", user_path(current_user.id), class: "link"
+      = link_to "お気に入り一覧",  item_likes_path(current_user.id), method: :get, class: "link"
+      = link_to "プロフィール", edit_profile_path(current_user.id), class: "link"
+      = link_to "送付先住所情報", edit_destination_path(current_user.id), class: "link select"
+      = link_to "ニックネーム/メール", edit_user_path(current_user.id), class: "link"
+      = link_to "クレジットカード情報", cards_path, class: "link"
+      = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "link"
+    .my-page__main__center
+      .title
+        住所
+      .destination_form
+        = form_for(@destination) do |f|
+          .FormField
+            .FormField__label_NAME
+              = f.label :"お名前(全角)"
+            .FormField__input_NAME
+              = f.text_field :first_name, {class: "half", placeholder:"例) 山田"}
+              = f.text_field :last_name, {class: "half", placeholder:"例) 太郎"}
+          .FormField
+            .FormField__label_KANA
+              = f.label :"お名前(全角かな)"
+            .FormField__input_KANA
+              = f.text_field :kana_first_name, {class: "half", placeholder:"例) やまだ"}
+              = f.text_field :kana_last_name, {class: "half", placeholder:"例) たろう"}
+          .FormField
+            .FormField__label_post
+              = f.label :郵便番号
+            .FormField__input_post
+              〒
+              = f.text_field :postal_code, {class: "post", placeholder:"例) 1234567"}
+          .FormField
+            .FormField__label_pre
+              = f.label :都道府県
+            .select-box
+              = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"}, class:"frame"
+          .FormField
+            .FormField__label_city
+              = f.label :市区町村
+            .field__box
+              = f.text_field :city, {placeholder:"例) 横浜市緑区"}
+          .FormField
+            .FormField__label_address
+              = f.label :番地
+            .field__box
+              = f.text_field :address, {placeholder:"例) 青山1ー1ー1"}
+          .FormField
+            .FormField__label_add
+              = f.label :マンション名・部屋番号
+            .field__box
+              = f.text_field :additional_information, {placeholder:"例) 柳ビル103"}
+          .FormField
+            .FormField__label_phone
+              = f.label :電話番号
+            .field__box
+              = f.number_field :phone_number, {placeholder:"例) 09012345678"}
+          .FormButton
+            = f.submit "編集", class: 'Button UserButton'
+          
+  = render "users/footer"

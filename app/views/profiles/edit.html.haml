@@ -9,7 +9,7 @@
       = link_to "マイページ", user_path(current_user.id), class: "link"
       = link_to "お気に入り一覧",  item_likes_path(current_user.id), method: :get, class: "link"
       = link_to "プロフィール", edit_profile_path(current_user.id), class: "link select"
-      = link_to "送付先住所情報", root_path, class: "link"
+      = link_to "送付先住所情報", edit_destination_path(current_user.id), class: "link"
       = link_to "ニックネーム/メール", edit_user_path(current_user.id), class: "link"
       = link_to "クレジットカード情報", cards_path, class: "link"
       = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "link"
