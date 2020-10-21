@@ -135,6 +135,29 @@
           &__label_email {
             padding-right: 30px;
           }
+          &__label_NAME {
+            padding-right: 64px;
+          }
+          &__label_KANA {
+            padding-right: 20px;
+          }
+          &__label_birthday {
+            padding-right: 102px;
+          }
+          &__input_NAME {
+            display: flex;
+            .half {
+              width: 150px;
+              margin-right: 3px;
+            }
+          }
+          &__input_KANA {
+            display: flex;
+            .half {
+              width: 150px;
+              margin-right: 3px;
+            }
+          }
         }
         .FormButton {
           font-size: 20px;

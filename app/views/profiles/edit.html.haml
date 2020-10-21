@@ -1,0 +1,41 @@
+= render "users/put-up"
+
+.my-page
+  = render "users/header"
+  
+  .my-page__main
+    .my-page__main__left
+      = link_to "トップページ", root_path, class: "link"
+      = link_to "マイページ", user_path(current_user.id), class: "link"
+      = link_to "お気に入り一覧",  item_likes_path(current_user.id), method: :get, class: "link"
+      = link_to "プロフィール", edit_profile_path(current_user.id), class: "link select"
+      = link_to "送付先住所情報", root_path, class: "link"
+      = link_to "ニックネーム/メール", edit_user_path(current_user.id), class: "link"
+      = link_to "クレジットカード情報", cards_path, class: "link"
+      = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "link"
+    .my-page__main__center
+      .title
+        プロフィール
+      .edit_form
+        = form_for(@profile) do |f|
+          .FormField
+            .FormField__label_NAME
+              = f.label :"お名前(全角)"
+            .FormField__input_NAME
+              = f.text_field :first_name, {class: "half", placeholder:"例) 山田"}
+              = f.text_field :last_name, {class: "half", placeholder:"例) 太郎"}
+          .FormField
+            .FormField__label_KANA
+              = f.label :"お名前(全角かな)"
+            .FormField__input_KANA
+              = f.text_field :kana_first_name, {class: "half", placeholder:"例) やまだ"}
+              = f.text_field :kana_last_name, {class: "half", placeholder:"例) たろう"}
+          .FormField
+            .FormField__label_birthday
+              = f.label :"生年月日"
+            .FormField__input_birthday
+              = f.date_select :birthday, {prompt:"--", use_month_numbers: true,start_year:Time.now.year, end_year:1900}, {class: 'select'}
+          .FormButton
+            = f.submit "編集", class: 'Button UserButton'
+          
+  = render "users/footer"
