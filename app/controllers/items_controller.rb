@@ -29,12 +29,13 @@ class ItemsController < ApplicationController
   end
 
   def update
+    
     addBrand()
     createCategoryId()
     changeBrandId()
     if !@item.update(item_params)
       message = '入力必須項目に入力してください'
-      if params[:item][:price].to_i < 1
+      if params[:item][:price].to_i < 300
         message = '金額は1以上を入力してください'
       elsif params[:item][:price].to_i >= 10000000
         message = '金額は99,999,999以下を入力してください'
@@ -78,7 +79,7 @@ class ItemsController < ApplicationController
     if params[:item][:item_images_attributes] != nil
       if !@item.save
         flash.now[:alert] = '入力必須項目に入力してください'
-        if @item[:price] < 1
+        if @item[:price] < 300
           flash.now[:alert] = '金額は1以上を入力してください'
         elsif @item[:price] >= 10000000
           flash.now[:alert] = '金額は99,999,999以下を入力してください'

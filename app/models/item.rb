@@ -13,7 +13,7 @@ class Item < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 40 }
   validates :description, presence: true
-  validates :price, presence: true, :numericality => { :greater_than_or_equal_to => 1,  :less_than => 10000000}
+  validates :price, presence: true, :numericality => { :greater_than_or_equal_to => 300,  :less_than => 10000000}
 
   validate  :image_lists_validation
 
