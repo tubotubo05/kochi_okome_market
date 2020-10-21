@@ -124,6 +124,26 @@
         }
       }
       .form {
+        font-size: 22px;
+        padding: 80px 50px 50px 50px;
+        .FormField {
+          padding-bottom: 10px;
+          display: flex;
+          &__label_name {
+            margin-right: 30px;
+          }
+          &__label_email {
+            padding-right: 47px;
+          }
+        }
+        .FormButton {
+          font-size: 20px;
+          display: flex;
+          justify-content: center;
+          .Button {
+            padding: 0px 7px;
+          }
+        }
       }
     }
   }

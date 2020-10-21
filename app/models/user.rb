@@ -3,8 +3,6 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  
-  validates :nickname, :password, presence: true
 
   has_one :profile, dependent: :destroy
   accepts_nested_attributes_for :profile
@@ -14,11 +12,13 @@ class User < ApplicationRecord
   has_many :cards, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :liked_posts, through: :likes, source: :post
-  
+
 
   def already_liked?(item)
     self.likes.exists?(item_id: item.id)
   end
 
+  validates :password, presence: true, on: :create
+  validates :nickname, presence: true, uniqueness: true
 
 end

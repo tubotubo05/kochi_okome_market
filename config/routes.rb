@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
 
-  resources :users, only: [:index, :show, :edit]
+  resources :users, only: [:index, :show, :edit, :update]
   resources :cards, only: [:index, :new, :create, :destroy]
 
   root 'items#index'

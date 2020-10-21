@@ -10,14 +10,26 @@
       = link_to "お気に入り一覧",  item_likes_path(current_user.id), method: :get, class: "link"
       = link_to "プロフィール", root_path, class: "link"
       = link_to "送付先住所情報", root_path, class: "link"
-      = link_to "メール/パスワード", edit_user_path(current_user.id), class: "link select"
+      = link_to "ニックネーム/メール", edit_user_path(current_user.id), class: "link select"
       = link_to "クレジットカード情報", cards_path, class: "link"
       = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "link"
     .my-page__main__center
       .title
         ログイン情報
       .form
-        メールアドレス編集
+        = form_for(current_user) do |f|
+          .FormField
+            .FormField__label_name
+              = f.label :nickname
+            .FormField__input_name
+              = f.text_field :nickname, autofocus: true
+          .FormField
+            .FormField__label_email
+              = f.label :email
+            .FormField__input_email
+              = f.email_field :email
+          .FormButton
+            = f.submit "編集", class: 'Button UserButton'
           
   = render "footer"
   
