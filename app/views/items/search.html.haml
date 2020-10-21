@@ -1,0 +1,15 @@
+= render 'header'
+
+.search-right
+  %section.items-box-container
+    -if @items.present?
+      %h2.search-result-head
+        =@items[0].name
+        %span.search-result-head-text
+          の検索結果
+      .search-result-number
+        ="1-#{@items.count}件表示"
+    -else
+      %h2.search-result-nil
+        新着商品
+    .items-box-content
