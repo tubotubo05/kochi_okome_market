@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :edit, :update]
   resources :cards, only: [:index, :new, :create, :destroy]
   resources :profiles, only: [:edit, :update]
+  resources :destinations, only: [:edit, :update]
 
   root 'items#index'
   resources :items do
