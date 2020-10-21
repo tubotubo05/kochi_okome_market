@@ -14,6 +14,7 @@ class ItemsController < ApplicationController
     @comment =Comment.new
     @comments =@item.comments.order(created_at: :desc)
     @tax = @item.price * 1.1
+    @like = Like.new
   end
 
   def edit

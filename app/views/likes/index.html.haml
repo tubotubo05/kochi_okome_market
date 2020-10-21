@@ -1,0 +1,26 @@
+.card
+  = render "cards/header"
+  .card__main
+    .card__main__left
+      = render "cards/link"
+    .card__main__right
+      .title
+        お気に入り一覧
+      - if @like.present?
+        .likes-main
+          - @like.each do |like|
+            = link_to item_path(like.item.id) do
+              .like
+                .image
+                  = image_tag like.item.item_images[0].image_url.url,height:"80px",width:"80px"
+                .content
+                  .name 
+                    = like.item.name
+                  .price
+                  %span ¥
+                  = like.item.price
+      - else
+        .notlike
+          .content お気に入りがありません
+
+  = render "cards/footer"

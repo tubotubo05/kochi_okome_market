@@ -151,10 +151,26 @@
       .like-btn{
         height: 38px;
         width: 134px;
-        color: #3CCACE;
+        color: #AAAAAA;
         border:1px solid #FFB340 ;
         border-radius: 40px;
-        padding: 6px 10px;
+        padding: 6px 8px;
+        display: flex;
+        .icon{
+          margin-top: 3px;
+        }
+      }
+      .delike-btn{
+        height: 38px;
+        width: 134px;
+        color: #3CCACE;
+        border:1px solid #3CCACE ;
+        border-radius: 40px;
+        padding: 6px 8px;
+        display: flex;
+        .icon{
+          margin-top: 3px;
+        }
       }
       .option-btn{
         border: 1px solid #333333 ;
@@ -247,4 +263,8 @@
       color: #3CCACE;
     }
   }
+}
+
+a{
+  text-decoration: none;
 }

@@ -1,5 +1,6 @@
 = link_to "トップページ", root_path, class: "link"
 = link_to "マイページ", user_path(current_user.id), class: "link"
+= link_to "お気に入り一覧",  item_likes_path(current_user.id), method: :get, class: "link"
 = link_to "プロフィール", root_path, class: "link"
 = link_to "送付先住所情報", root_path, class: "link"
 = link_to "メール/パスワード", edit_user_path(current_user.id), class: "link"
