@@ -135,7 +135,8 @@ class ItemsController < ApplicationController
   end
 
   def search
-    @items = Item.where(['name LIKE ?', "%buta%"])
+    @items = Item.where(['name LIKE ?', "%#{params[:text]}%"])
+    @search = params[:text]
   end
 
 
