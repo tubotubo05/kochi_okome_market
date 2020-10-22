@@ -3,7 +3,7 @@
   position: relative;
   .search {
     background-color: #f8f8f8;
-    margin: 40px 50px;
+    margin: 40px 0;
     padding: 20px;
     &__title {
       font-size: 28px;
@@ -39,13 +39,19 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 234px;
-        a{
-          text-decoration: none;
-          color: black;
+        width: 100vw;
+        height: auto;
+        &__box {
+          width: auto;
+          height: auto;
           margin: 0 20px 20px 0;
+          li {
+            display: flex;
+            text-decoration: none;
+            width: 100vh;
+          }
           .image{
-            height: 150px;
+            width: 100%;
             .sold{
               width: 0;
               height: 0;
@@ -68,6 +74,7 @@
           }
           .context {
             background-color: white;
+            color: black;
             padding: 10px;
             .name {
               width: 200px;
@@ -93,9 +100,11 @@
     height: 100px;
     margin: 0 auto;
     text-align: center;
+    background-color: whitesmoke;
       .last {
         img {
         border-radius: 5px;
+        margin: 20px;
         }
       }
   }
