@@ -180,7 +180,7 @@ class ItemsController < ApplicationController
   def createCategoryId
     if params[:item][:category_child] == nil || params[:item][:category_child] == "child"
       @category_id = params[:item][:category_id]
-    elsif params[:item][:category_grandchild] == "grandchild"
+    elsif params[:item][:category_grandchild] == nil || params[:item][:category_grandchild] == "grandchild"
       @category_id = params[:item][:category_child]
     else
       @category_id = params[:item][:category_grandchild]
