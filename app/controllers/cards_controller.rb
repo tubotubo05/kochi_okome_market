@@ -25,7 +25,6 @@ class CardsController < ApplicationController
   end
 
 
-
   def destroy
     card = current_user.cards[0]
     if card.destroy

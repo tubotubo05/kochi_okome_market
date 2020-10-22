@@ -5,8 +5,12 @@ class ProfilesController < ApplicationController
 
   def update
     @profile = Profile.where(user_id: current_user.id)[0]
-    @profile.update(profile_params)
-    redirect_to edit_profile_path(current_user.id)
+    if !@profile.update(profile_params)
+      message = '入力されていない項目があるもしくは、”お名前(全角かな)”がひらがなで入力されていません'
+      redirect_to edit_profile_path(current_user.id), flash: {error: message}
+    else
+      redirect_to edit_profile_path(current_user.id)
+    end
   end
 
 
