@@ -33,5 +33,13 @@ class Item < ApplicationRecord
       errors.add(:item_images, "画像は５枚まで添付可能です")
     end
   end
-  
+
+  def self.search(search)
+    if search
+      Item.where(['content LIKE ?', "%#{search}%"])
+    else
+      Item.all
+    end
+  end
+
 end

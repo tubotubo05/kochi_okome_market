@@ -27,6 +27,9 @@ Rails.application.routes.draw do
       get "cardnew"
       get 'purchased'
     end
+    collection do
+      get 'search'
+    end
   end
 
   namespace :api do

@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :set_item, except: [:index, :new, :create, :destroy]
+  before_action :set_item, except: [:index, :new, :create, :destroy, :search]
+  
 
   def index
     @items = Item.includes(:user).order('created_at DESC').limit(6)
@@ -132,6 +133,11 @@ class ItemsController < ApplicationController
         redirect_to purchased_item_path
       end
     end
+  end
+
+  def search
+    @items = Item.where(['name LIKE ?', "%#{params[:text]}%"])
+    @search = params[:text]
   end
 
 

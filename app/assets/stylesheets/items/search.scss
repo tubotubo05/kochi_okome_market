@@ -1,0 +1,113 @@
+.main {
+  display: block;
+  position: relative;
+  .search {
+    background-color: #f8f8f8;
+    margin: 40px 0;
+    padding: 20px;
+    &__title {
+      font-size: 28px;
+      font-weight: 400px;
+      margin-bottom: 8px;
+    }
+    &__text {
+      font-size: 18px;
+      margin: 0 0 0 4px;
+    }
+    .search-number {
+      font-size: 12px;
+      margin: 16px 0;
+    }
+
+    &__link {
+      font-size: 26px;
+      font-weight: bold;
+      padding-bottom: 20px;
+      .link {
+        color: #3CCACE;
+        text-decoration: none;
+      }
+    }
+    .pickup {
+      background-color: #f8f8f8;
+      padding: 10px 0px 30px 0px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      &__items {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        height: auto;
+        &__box {
+          width: auto;
+          height: auto;
+          margin: 0 20px 20px 0;
+          li {
+            display: flex;
+            text-decoration: none;
+            width: 100vh;
+          }
+          .image{
+            width: 100%;
+            .sold{
+              width: 0;
+              height: 0;
+              border-top: 60px solid #3CCACE ;
+              border-right: 60px solid transparent;
+              border-bottom: 60px solid transparent;
+              border-left: 60px solid #3CCACE ;
+              z-index:100;
+              position: relative;
+              top:-154px;
+              &__inner{
+                transform: rotate(-45deg);
+                font-size: 26px;
+                margin:-35px 0px 0px -65px;
+                color: #fff;
+                letter-spacing: 2px;
+                font-weight: 600;
+              }
+            }
+          }
+          .context {
+            background-color: white;
+            color: black;
+            padding: 10px;
+            .name {
+              width: 200px;
+              word-wrap: break-word;
+              font-size: 20px;
+            }
+            .value{
+              font-size: 16px;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            }
+            .tax {
+              font-size: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .new-footer {
+    width: 456px;
+    height: 100px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: whitesmoke;
+      .last {
+        img {
+        border-radius: 5px;
+        margin: 20px;
+        }
+      }
+  }
+}
+
+

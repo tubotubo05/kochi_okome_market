@@ -1,0 +1,39 @@
+= render 'header'
+
+.main 
+  .search
+    %h2.search__title
+      = @search
+      %span.search__text の検索結果
+    .search-number
+      ="1-#{@items.count}件表示"
+
+    .pickup
+    - if @items.length != 0
+      %ul.pickup__items
+        - @items.each do |item|
+          %li.pickup__items__box
+            = link_to item_path(item.id) do
+              .image
+                = image_tag item.item_images[0].image_url.url, class: 'image-tag', width: '220px', height: '150px'
+                -if item.buyer_id.present?
+                  .sold
+                    .sold__inner
+                      SOLD
+              .context
+                .name
+                  = item.name
+                .value
+                  .value
+                    = (item.price * 1.1).round
+                    円
+                  .evaluation
+                    ⭐️1
+                .tax
+                  (税込)
+
+  .new-footer
+    .new-footer__title
+      .last
+        = link_to image_tag(src="logo-white.png", size: "185x49"), root_path
+

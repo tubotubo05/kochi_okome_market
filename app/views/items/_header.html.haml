@@ -3,7 +3,7 @@
     .header__top__title
       = link_to image_tag(src="logo.png", size: "140x40"), root_path
     .header__top__search
-      = form_with url: root_path, method: 'GET', html: {class: "header__top__search__form"}, local: true do |f|
+      = form_with url: search_items_path, method: 'GET', html: {class: "header__top__search__form"}, local: true do |f|
         = f.text_field :text, class: 'text', placeholder: 'キーワードから探す'
         %button{type: "submit", class:'button'}
           .icon
