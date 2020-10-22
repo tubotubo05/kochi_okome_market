@@ -6,8 +6,8 @@
   .my-page__main
     .my-page__main__left
       = link_to "トップページ", root_path, class: "link"
-      = link_to "マイページ", user_path(current_user.id), class: "link select"
-      = link_to "購入商品", bought_items_user_path(current_user.id), class: "link"
+      = link_to "マイページ", user_path(current_user.id), class: "link"
+      = link_to "購入商品", bought_items_user_path(current_user.id), class: "link select"
       = link_to "お気に入り一覧",  item_likes_path(current_user.id), method: :get, class: "link"
       = link_to "プロフィール", edit_profile_path(current_user.id), class: "link"
       = link_to "送付先住所情報", edit_destination_path(current_user.id), class: "link"
@@ -16,15 +16,12 @@
       = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "link"
     .my-page__main__center
       .title
-        MY商品
+        購入商品一覧
       .items
         - if @images.length == 0
           .empty
-            出品されていません
-            %br
-              商品を出品してみましょう!
+            購入した商品はありません
         - else
-          - count = 0
           .item
             - @images.each do |image|
               .area
@@ -32,13 +29,5 @@
                   = link_to image_tag(image[1][0].image_url.url, width: "200", height: '200', class: "img"), item_path(image[0][:id])
                 .name
                   = image[0][:name]
-                - if image[0][:buyer_id] != nil
-                  .sold-out
-                    SOUL'd OUT
-                - else
-                  .button
-                    .delete{id: "#{image[0][:id]}"}
-                      削除
-              - count = count + 1
 
   = render "footer"

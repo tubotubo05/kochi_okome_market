@@ -7,10 +7,15 @@ Rails.application.routes.draw do
     post 'destinations', to: 'users/registrations#create_destination'
   end
 
-  resources :users, only: [:index, :show, :edit, :update]
   resources :cards, only: [:index, :new, :create, :destroy]
   resources :profiles, only: [:edit, :update]
   resources :destinations, only: [:edit, :update]
+
+  resources :users, only: [:index, :show, :edit, :update] do
+    member do
+      get "bought_items"
+    end
+  end
 
   root 'items#index'
   resources :items do
