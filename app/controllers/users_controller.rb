@@ -8,8 +8,16 @@ class UsersController < ApplicationController
   end
 
   def update
-    current_user.update(user_params)
-    redirect_to edit_user_path(current_user.id)
+    if !current_user.update(user_params)
+      if params[:user][:email] == "" || params[:user][:nickname] == ""
+        message = 'ニックネームもしくはメールアドレスに何も入力されていません'
+      else
+        message = 'ニックネームもしくはメールアドレスがすでに存在しています'
+      end
+      redirect_to edit_user_path(current_user.id), flash: {error: message}
+    else
+      redirect_to edit_user_path(current_user.id)
+    end
   end
 
   def show
