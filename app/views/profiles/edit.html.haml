@@ -21,7 +21,7 @@
         = form_for(@profile) do |f|
           .FormField
             .FormField__label_NAME
-              = f.label :"お名前(全角)"
+              = f.label :"お名前"
             .FormField__input_NAME
               = f.text_field :first_name, {class: "half", placeholder:"例) 山田"}
               = f.text_field :last_name, {class: "half", placeholder:"例) 太郎"}
