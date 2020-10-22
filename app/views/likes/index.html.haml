@@ -6,6 +6,7 @@
     .card__main__left
       = link_to "トップページ", root_path, class: "link"
       = link_to "マイページ", user_path(current_user.id), class: "link"
+      = link_to "購入商品", bought_items_user_path(current_user.id), class: "link"
       = link_to "お気に入り一覧",  item_likes_path(current_user.id), method: :get, class: "link select"
       = link_to "プロフィール", edit_profile_path(current_user.id), class: "link"
       = link_to "送付先住所情報", edit_destination_path(current_user.id), class: "link"
